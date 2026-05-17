@@ -89,7 +89,7 @@ OVERRIDE_REASON: Source-contract research must be integrated without guessing un
 ## DEPENDENCY_STATUS
 
 ```text
-pending
+ready
 ```
 
 ## REQUESTED_BY_ROLE

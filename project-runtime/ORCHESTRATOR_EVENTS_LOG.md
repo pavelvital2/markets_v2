@@ -98,6 +98,52 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001
+GATE_ID: GATE_OZON_RESEARCH_CHECKPOINT_001
+ACTION_ID: NEXT_OZON_RESEARCH_CHECKPOINT_COMMIT_001
+STATUS: passed
+SUMMARY: Accepted Ozon source contract research, audit, and runtime records were committed locally; push was not attempted.
+INPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- git commit 87e38de
+- project-runtime/PROJECT_STATE.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: 87e38de
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_ozon_research_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: route
+ACTOR: orchestrator
+TASK_ID: TASK_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001
+GATE_ID: GATE_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001
+ACTION_ID: NEXT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001
+STATUS: ready
+SUMMARY: WB and Ozon source-contract research dependencies are audited and checkpointed; designer continuation is selected as next action with xhigh.
+INPUT_REFS:
+- project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+- project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/CURRENT_GATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_route_commit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: audit_result_received
 ACTOR: auditor
 TASK_ID: TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001

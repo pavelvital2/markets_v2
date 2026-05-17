@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_RESEARCH_SOURCE_DISCOVERY_001
-GATE_NAME: Source discovery research dependency
-GATE_TYPE: requirements
+GATE_ID: GATE_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+GATE_NAME: Audit source discovery research result
+GATE_TYPE: audit
 STATUS: active
-OWNER_ROLE: requirements_analyst
-TASK_ID: TASK_RESEARCH_SOURCE_DISCOVERY_001
-TASK_PACKET: project-docs/03_tasks/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+OWNER_ROLE: auditor
+TASK_ID: TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+TASK_PACKET: project-docs/03_tasks/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -28,14 +28,14 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Exit criteria
 
 ```text
-- research RESULT returns pass, blocked, gap, or fail
-- research output avoids secret exposure
+- audit RESULT returns pass, blocked, gap, or fail
+- research output is accepted or rejected before design continuation
 ```
 
 ## Required next role
 
 ```text
-requirements_analyst
+auditor
 ```
 
 ## Gate evidence

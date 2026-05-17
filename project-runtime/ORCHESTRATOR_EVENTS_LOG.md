@@ -29,6 +29,75 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_RESEARCH_CHECKPOINT_001
+GATE_ID: GATE_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+ACTION_ID: NEXT_RESEARCH_CHECKPOINT_COMMIT_001
+STATUS: passed
+SUMMARY: Aggregate research checkpoint preflight passed with local-only policy; push remains forbidden.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_RESEARCH_CHECKPOINT_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_RESEARCH_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_research_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+GATE_ID: GATE_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+ACTION_ID: NEXT_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
+STATUS: pass
+SUMMARY: Research re-audit passed; design continuation may proceed after local checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001_PASS.md
+- project-docs/03_tasks/TASK_AGGREGATE_RESEARCH_CHECKPOINT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: requirements_analyst
+TASK_ID: TASK_RESEARCH_SOURCE_DISCOVERY_001
+GATE_ID: GATE_RESEARCH_SOURCE_DISCOVERY_001
+ACTION_ID: NEXT_RESEARCH_SOURCE_DISCOVERY_001
+STATUS: pass
+SUMMARY: Source discovery research completed; mandatory audit is required before design continuation.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+OUTPUT_REFS:
+- project-docs/07_reports/TASK_RESEARCH_SOURCE_DISCOVERY_001_RESULT.md
+- project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001

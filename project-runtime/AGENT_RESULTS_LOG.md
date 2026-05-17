@@ -62,4 +62,39 @@ TASK_ID: TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001_PASS.md
 SUMMARY: Research re-audit passed; bounded-source compliance and secret exposure checks passed.
+
+DATE: 2026-05-17
+ROLE: designer
+TASK_ID: TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+SUMMARY: Design continuation completed; downstream task-like artifacts require mandatory audit.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_DESIGN_CONTINUATION_RESULT_001
+STATUS: fail
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_RESULT_001.md
+SUMMARY: Audit failed because all downstream task/proposal artifacts are schema-invalid.
+
+DATE: 2026-05-17
+ROLE: designer
+TASK_ID: TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+SUMMARY: Correction made six downstream task packets dispatch-valid and proposal schema-valid; mandatory audit pending.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: blocked
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+SUMMARY: Audit blocked only on missing traceable correction dispatch reasoning evidence; schema, scope, identity, forbidden path, runtime mutation, and secret checks passed.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001_PASS.md
+SUMMARY: Re-audit passed; corrected downstream task packets and proposal validate, scope and reasoning evidence checks passed.
 ```

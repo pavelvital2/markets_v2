@@ -29,6 +29,28 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: designer
+TASK_ID: TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+GATE_ID: GATE_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+ACTION_ID: NEXT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+STATUS: pass
+SUMMARY: Designer created bounded design docs and downstream task-like artifacts; validator evidence shows downstream schema failures that audit must evaluate.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_AUDIT_DESIGN_CONTINUATION_RESULT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_RESEARCH_CHECKPOINT_001
@@ -92,6 +114,53 @@ COMMIT_HASH: NONE
 BRANCH: main
 PUSH_STATUS: not_required
 ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001
+GATE_ID: GATE_DESIGN_CONTINUATION_CHECKPOINT_001
+ACTION_ID: NEXT_DESIGN_CONTINUATION_CHECKPOINT_COMMIT_001
+STATUS: passed
+SUMMARY: Aggregate design continuation checkpoint preflight passed with include-untracked; push remains forbidden/not requested.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001_PASS.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001_1.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_design_continuation_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+GATE_ID: GATE_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+ACTION_ID: NEXT_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: pass
+SUMMARY: Re-audit passed after orchestrator recorded traceable correction dispatch reasoning evidence; corrected task packets and proposal validate.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+- project-runtime/agent-results/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001_PASS.md
+- project-docs/03_tasks/TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
 FAILURE_REASON: NONE
 NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 ```
@@ -375,5 +444,50 @@ BRANCH: main
 PUSH_STATUS: not_required
 ACCEPTED_FILES: NONE
 FAILURE_REASON: repository_lock_missing; untracked_critical_baseline; untracked_project_input_tz_without_policy
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_dispatch
+ACTOR: orchestrator
+TASK_ID: TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+GATE_ID: GATE_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+ACTION_ID: NEXT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: dispatched
+SUMMARY: Correction task required REASONING_LEVEL VALUE: maximum; orchestrator dispatched designer agent 019e3638-26ec-7301-976f-7a6b5abd08d4 (Pasteur) with reasoning_effort xhigh.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+- project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_RESULT_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+GATE_ID: GATE_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+ACTION_ID: NEXT_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001
+STATUS: blocked
+SUMMARY: Audit blocked only because traceable correction dispatch reasoning evidence was not yet recorded in runtime; validation, scope, identity, forbidden path, runtime mutation, and secret checks passed.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+- project-runtime/agent-results/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+- project-runtime/agent-results/TASK_CORRECT_DESIGN_CONTINUATION_ARTIFACTS_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: missing_traceable_dispatch_reasoning_evidence
 NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 ```

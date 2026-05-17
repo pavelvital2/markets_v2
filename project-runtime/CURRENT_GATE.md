@@ -3,40 +3,39 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_WB_RESEARCH_CHECKPOINT_001
-GATE_NAME: WB research local checkpoint
-GATE_TYPE: checkpoint
+GATE_ID: GATE_RESEARCH_OZON_SOURCE_CONTRACTS_001
+GATE_NAME: Research Ozon source contracts
+GATE_TYPE: research
 STATUS: active
-OWNER_ROLE: release_manager
-TASK_ID: TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001
-TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001.md
+OWNER_ROLE: requirements_analyst
+TASK_ID: TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001
+TASK_PACKET: project-docs/03_tasks/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
 CHECKPOINT_ELIGIBILITY: local_only
-CHECKPOINT_ELIGIBILITY_STATUS: pending
-PROJECT_CHECKPOINT_STATUS: pending
+CHECKPOINT_ELIGIBILITY_STATUS: eligible
+PROJECT_CHECKPOINT_STATUS: passed
 ```
 
 ## Entry criteria
 
 ```text
-- TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001 returned pass
-- aggregate checkpoint task packet exists
+- TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001 returned pass
+- TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001 dependency status is ready
+- WB source contract research is checkpointed locally
 ```
 
 ## Exit criteria
 
 ```text
-- checkpoint preflight receipt is passed
-- local commit is created
-- push is not attempted
+- research RESULT returns pass, blocked, gap, or fail
 ```
 
 ## Required next role
 
 ```text
-release_manager
+requirements_analyst
 ```
 
 ## Gate evidence
@@ -45,7 +44,7 @@ release_manager
 - project-input/TZ.md exists and is readable
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
-- project-runtime/agent-results/TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001.md exists
+- local checkpoint commit a58f66f exists
 ```
 
 ## Blocking status
@@ -55,7 +54,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: run local checkpoint preflight
+RESOLUTION_PATH: dispatch Ozon source contract research
 ```
 
 ## Notes

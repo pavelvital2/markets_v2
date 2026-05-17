@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: checkpoint
-PROJECT_STATUS: checkpoint_pending
+CURRENT_PHASE: research
+PROJECT_STATUS: research_pending
 ```
 
 ## Workspace identity
@@ -42,14 +42,14 @@ CHECKPOINT_ELIGIBILITY_STATUS: eligible
 CHECKPOINT_PREFLIGHT_STATUS: passed
 CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested no --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001_1.md
 CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001_1.md
-COMMIT_STATUS: pending
-LAST_COMMIT_HASH: d0ea303
+COMMIT_STATUS: committed
+LAST_COMMIT_HASH: a58f66f
 LAST_COMMIT_BRANCH: main
 PUSH_STATUS: not_required
 LAST_PUSH_REMOTE: NONE
 LAST_PUSH_BRANCH: NONE
 LAST_PUSH_TARGET_STATUS: not_required
-PROJECT_CHECKPOINT_STATUS: pending_commit
+PROJECT_CHECKPOINT_STATUS: passed
 CHECKPOINT_BLOCKED_BY: NONE
 LAST_CHECKPOINT_FAILURE_REASON: NONE
 ```
@@ -58,7 +58,7 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 
 ```text
 ACTION_SEMANTIC: normal
-SEMANTIC_REASON: WB research correction audit passed; route accepted WB research bundle to local checkpoint.
+SEMANTIC_REASON: WB research checkpoint completed; route Ozon source contract research.
 ```
 
 ## Active branches
@@ -69,7 +69,7 @@ BLOCKER_TYPE: NONE
 STATUS: resolved
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: checkpoint accepted WB research before Ozon research dispatch
+RESOLUTION_PATH: dispatch TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001 with xhigh, then audit research result
 ```
 
 ## Completed milestones

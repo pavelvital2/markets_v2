@@ -29,6 +29,29 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: route_selected
+ACTOR: orchestrator
+TASK_ID: TASK_DEV_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_DEV_WB_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_DEV_WB_PROVIDER_MIGRATION_001
+STATUS: ready
+SUMMARY: Parser contract/export/quality checkpoint is pushed and Stage 8 dependencies are ready; selected WB provider migration before Ozon maximum-complexity migration.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/CURRENT_GATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_route_commit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001

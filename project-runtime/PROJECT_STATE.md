@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: checkpoint
-PROJECT_STATUS: checkpoint_pending
+CURRENT_PHASE: development
+PROJECT_STATUS: dev_pending
 ```
 
 ## Workspace identity
@@ -58,7 +58,7 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 
 ```text
 ACTION_SEMANTIC: normal
-SEMANTIC_REASON: Parser contract/export/quality testing returned pass; route accepted implementation bundle to checkpoint and push.
+SEMANTIC_REASON: Parser contract/export/quality checkpoint is pushed; route WB provider migration.
 ```
 
 ## Active branches
@@ -69,7 +69,7 @@ BLOCKER_TYPE: NONE
 STATUS: resolved
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: checkpoint and push TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001
+RESOLUTION_PATH: dispatch TASK_DEV_WB_PROVIDER_MIGRATION_001 with high
 ```
 
 ## Completed milestones

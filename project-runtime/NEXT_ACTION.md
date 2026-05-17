@@ -5,36 +5,34 @@
 Required structured fields:
 
 ```text
-ACTION_ID: NEXT_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
-ACTION_TYPE: create_agent
-TARGET_ROLE: auditor
-TASK_ID: TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
-TASK_PACKET: project-docs/03_tasks/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+ACTION_ID: NEXT_DESIGN_AUDIT_CHECKPOINT_COMMIT_001
+ACTION_TYPE: checkpoint_preflight
+TARGET_ROLE: release_manager
+TASK_ID: TASK_AGGREGATE_DESIGN_AUDIT_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_DESIGN_AUDIT_CHECKPOINT_001.md
 DEPENDENCY_STATUS: ready
 BLOCKED_BY: NONE
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_REQUIRED: yes
 REPOSITORY_LOCK_REQUIRED: yes
-CHECKPOINT_POLICY: forbidden
-CHECKPOINT_PREFLIGHT_REQUIRED: no
-CHECKPOINT_RECEIPT_REQUIRED: no
-CHECKPOINT_RECEIPT_REF: NONE
+CHECKPOINT_POLICY: local_only
+CHECKPOINT_PREFLIGHT_REQUIRED: yes
+CHECKPOINT_RECEIPT_REQUIRED: yes
+CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_DESIGN_AUDIT_CHECKPOINT_001_1.md
 REQUESTER_RETURN_CONTEXT: NONE
 BLOCKING_OR_RESUME_CONTEXT:
 NONE
 REQUIRED_UNIVERSAL_DOCS:
-- agent-system/01_roles/AUDITOR.md
-- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
-- agent-system/03_templates/TASK_PACKET_TEMPLATE.md
-- agent-system/03_templates/TASK_PROPOSAL_TEMPLATE.md
-- agent-system/09_validators/TASK_PACKET_SCHEMA_VALIDATION_RULES.md
+- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
+- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
+- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
 REQUIRED_PROJECT_DOCS:
-- project-docs/03_tasks/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
-- project-runtime/agent-results/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
-- project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_DESIGN_AUDIT_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
 EXPECTED_RESULT:
-- audit RESULT according to AGENT_RESULT_TEMPLATE
-INSTRUCTION_FOR_ORCHESTRATOR: Dispatch exactly one auditor task with reasoning_effort high.
+- checkpoint preflight receipt
+- local commit if preflight passes
+INSTRUCTION_FOR_ORCHESTRATOR: Run checkpoint preflight with include-untracked and push-requested no; commit locally only if preflight passes.
 ```
 
 ## Requester return context
@@ -52,29 +50,27 @@ NONE
 ## REQUIRED_UNIVERSAL_DOCS
 
 ```text
-- agent-system/01_roles/AUDITOR.md
-- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
-- agent-system/03_templates/TASK_PACKET_TEMPLATE.md
-- agent-system/03_templates/TASK_PROPOSAL_TEMPLATE.md
-- agent-system/09_validators/TASK_PACKET_SCHEMA_VALIDATION_RULES.md
+- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
+- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
+- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
 ```
 
 ## REQUIRED_PROJECT_DOCS
 
 ```text
-- project-docs/03_tasks/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
-- project-runtime/agent-results/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
-- project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_DESIGN_AUDIT_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
 ```
 
 ## EXPECTED_RESULT
 
 ```text
-- audit RESULT according to AGENT_RESULT_TEMPLATE
+- checkpoint preflight receipt
+- local commit if preflight passes
 ```
 
 ## Instruction for orchestrator
 
 ```text
-Dispatch exactly one auditor task with reasoning_effort high.
+Run checkpoint preflight with include-untracked and push-requested no; commit locally only if preflight passes.
 ```

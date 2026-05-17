@@ -83,12 +83,13 @@ OVERRIDE_REASON: Source discovery determines downstream contracts and implementa
 
 ```text
 - TASK_BOOTSTRAP_DESIGNER_001 audit pass
+- aggregate bootstrap checkpoint commit 0f895aa
 ```
 
 ## DEPENDENCY_STATUS
 
 ```text
-pending
+ready
 ```
 
 ## REQUESTED_BY_ROLE

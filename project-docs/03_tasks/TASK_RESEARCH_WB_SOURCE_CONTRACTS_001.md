@@ -88,7 +88,7 @@ OVERRIDE_REASON: NONE
 ## DEPENDENCY_STATUS
 
 ```text
-pending
+ready
 ```
 
 ## REQUESTED_BY_ROLE

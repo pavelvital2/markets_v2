@@ -5,34 +5,32 @@
 Required structured fields:
 
 ```text
-ACTION_ID: NEXT_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001
-ACTION_TYPE: checkpoint
-TARGET_ROLE: release_manager
-TASK_ID: TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001
-TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001.md
-DEPENDENCY_STATUS: ready
-BLOCKED_BY: NONE
-ACTION_SEMANTIC: normal
+ACTION_ID: NEXT_WAIT_OWNER_MARKET_ANALYTICS_SCOPE_001
+ACTION_TYPE: owner_input
+TARGET_ROLE: project_owner
+TASK_ID: TASK_PROPOSAL_OWNER_DECISIONS_001
+TASK_PACKET: project-docs/03_tasks/TASK_PROPOSAL_OWNER_DECISIONS_001.md
+DEPENDENCY_STATUS: blocked
+BLOCKED_BY: GAP_OWNER_FORMULAS_THRESHOLDS_001
+ACTION_SEMANTIC: owner_input_required
 WORKSPACE_IDENTITY_REQUIRED: yes
 REPOSITORY_LOCK_REQUIRED: yes
-CHECKPOINT_POLICY: required
-CHECKPOINT_PREFLIGHT_REQUIRED: yes
-CHECKPOINT_RECEIPT_REQUIRED: yes
-CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001_1.md
+CHECKPOINT_POLICY: forbidden
+CHECKPOINT_PREFLIGHT_REQUIRED: no
+CHECKPOINT_RECEIPT_REQUIRED: no
+CHECKPOINT_RECEIPT_REF: NONE
 REQUESTER_RETURN_CONTEXT: NONE
 BLOCKING_OR_RESUME_CONTEXT:
-NONE
+Stage 9 Market Intelligence MVP is not dispatchable from the current design baseline. TASK_PROPOSAL_OWNER_DECISIONS_001 remains a draft proposal and must be converted into a full TASK_PACKET_TEMPLATE-compatible task before agent dispatch.
 REQUIRED_UNIVERSAL_DOCS:
-- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
-- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
-- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
+- agent-system/02_runtime/ORCHESTRATOR_RUNTIME_LOOP.md
 REQUIRED_PROJECT_DOCS:
-- project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001.md
-- project-runtime/agent-results/TASK_AUDIT_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001.md
+- project-docs/03_tasks/TASK_PROPOSAL_OWNER_DECISIONS_001.md
+- project-docs/02_stages/STAGE_PLAN_001.md
 EXPECTED_RESULT:
-- checkpoint preflight receipt
-- checkpoint commit pushed to origin main
-INSTRUCTION_FOR_ORCHESTRATOR: Run checkpoint preflight with include-untracked and push-requested yes, commit accepted analytics handoff documentation bundle, then push origin main.
+- owner decisions for analytics formulas, thresholds, partial data states, retention policy, and own-store source priority
+- a full dispatchable task packet before further implementation
+INSTRUCTION_FOR_ORCHESTRATOR: Wait for owner scope decisions or explicit instruction to create a governed task packet from TASK_PROPOSAL_OWNER_DECISIONS_001.
 ```
 
 ## Requester return context
@@ -44,33 +42,31 @@ NONE
 ## Blocking or resume context
 
 ```text
-NONE
+Stage 9 Market Intelligence MVP is not dispatchable from the current design baseline. TASK_PROPOSAL_OWNER_DECISIONS_001 remains a draft proposal and must be converted into a full TASK_PACKET_TEMPLATE-compatible task before agent dispatch.
 ```
 
 ## REQUIRED_UNIVERSAL_DOCS
 
 ```text
-- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
-- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
-- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
+- agent-system/02_runtime/ORCHESTRATOR_RUNTIME_LOOP.md
 ```
 
 ## REQUIRED_PROJECT_DOCS
 
 ```text
-- project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001.md
-- project-runtime/agent-results/TASK_AUDIT_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001.md
+- project-docs/03_tasks/TASK_PROPOSAL_OWNER_DECISIONS_001.md
+- project-docs/02_stages/STAGE_PLAN_001.md
 ```
 
 ## EXPECTED_RESULT
 
 ```text
-- checkpoint preflight receipt
-- checkpoint commit pushed to origin main
+- owner decisions for analytics formulas, thresholds, partial data states, retention policy, and own-store source priority
+- a full dispatchable task packet before further implementation
 ```
 
 ## Instruction for orchestrator
 
 ```text
-Run checkpoint preflight with include-untracked and push-requested yes, commit accepted analytics handoff documentation bundle, then push origin main.
+Wait for owner scope decisions or explicit instruction to create a governed task packet from TASK_PROPOSAL_OWNER_DECISIONS_001.
 ```

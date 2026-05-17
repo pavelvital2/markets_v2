@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: checkpoint
-PROJECT_STATUS: checkpoint_pending
+CURRENT_PHASE: owner_wait
+PROJECT_STATUS: owner_input_pending
 ```
 
 ## Workspace identity
@@ -42,14 +42,14 @@ CHECKPOINT_ELIGIBILITY_STATUS: eligible
 CHECKPOINT_PREFLIGHT_STATUS: passed
 CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested yes --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001_1.md
 CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001_1.md
-COMMIT_STATUS: pending
-LAST_COMMIT_HASH: d1d2f4f
+COMMIT_STATUS: committed
+LAST_COMMIT_HASH: e4f68b5
 LAST_COMMIT_BRANCH: main
-PUSH_STATUS: pending
+PUSH_STATUS: pushed
 LAST_PUSH_REMOTE: origin
 LAST_PUSH_BRANCH: main
-LAST_PUSH_TARGET_STATUS: pending
-PROJECT_CHECKPOINT_STATUS: pending
+LAST_PUSH_TARGET_STATUS: pushed
+PROJECT_CHECKPOINT_STATUS: passed
 CHECKPOINT_BLOCKED_BY: NONE
 LAST_CHECKPOINT_FAILURE_REASON: NONE
 ```
@@ -57,8 +57,8 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 ## Runtime semantic state
 
 ```text
-ACTION_SEMANTIC: normal
-SEMANTIC_REASON: Corrected analytics handoff documentation audit returned pass; route to aggregate checkpoint and push.
+ACTION_SEMANTIC: owner_input_required
+SEMANTIC_REASON: Analytics skeleton and developer handoff are checkpointed; Stage 9 MVP remains non-dispatchable until owner/design decisions are converted into a full governed task packet.
 ```
 
 ## Active branches
@@ -66,22 +66,22 @@ SEMANTIC_REASON: Corrected analytics handoff documentation audit returned pass; 
 ```text
 BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
-STATUS: resolved
-BLOCKS: NONE
-BLOCKED_BY: NONE
-RESOLUTION_PATH: checkpoint accepted analytics handoff documentation
+STATUS: active
+BLOCKS: Stage 9 Market Intelligence MVP dispatch
+BLOCKED_BY: GAP_OWNER_FORMULAS_THRESHOLDS_001
+RESOLUTION_PATH: owner decisions must be captured and converted into a governed task packet before business-facing analytics implementation
 ```
 
 ## Completed milestones
 
 ```text
-NONE
+GAP_OWNER_FORMULAS_THRESHOLDS_001
 ```
 
 ## Active risks
 
 ```text
-NONE
+GAP_OWNER_FORMULAS_THRESHOLDS_001
 ```
 
 ## Active blockers

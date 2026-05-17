@@ -29,6 +29,132 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001
+GATE_ID: GATE_LOCAL_CHECKPOINT_COMMIT_001
+ACTION_ID: NEXT_LOCAL_CHECKPOINT_COMMIT_001
+STATUS: passed
+SUMMARY: Owner authorized aggregate governed checkpoint route and preflight passed with local-only policy; push remains forbidden.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/PROJECT_STATE.md
+- project-runtime/CURRENT_GATE.md
+- project-runtime/NEXT_ACTION.md
+- project-runtime/TASK_REGISTRY.md
+- project-runtime/ACCEPTED_ARTIFACTS.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_bootstrap_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001
+GATE_ID: GATE_CHECKPOINT_SCOPE_BLOCKED_001
+ACTION_ID: NEXT_WAIT_FOR_OWNER_CHECKPOINT_SCOPE_001
+STATUS: blocked
+SUMMARY: Post-audit checkpoint preflight failed because aggregate bootstrap/runtime changed files exceed the narrow correction task packet scope.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001_1.md
+OUTPUT_REFS:
+- project-runtime/PROJECT_STATE.md
+- project-runtime/CURRENT_GATE.md
+- project-runtime/NEXT_ACTION.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: blocked
+FAILURE_REASON: checkpoint_preflight_changed_files_scope
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001
+GATE_ID: GATE_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001
+ACTION_ID: NEXT_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001
+STATUS: pass
+SUMMARY: Re-audit passed; corrected downstream task packets are valid and reasoning-level compliance evidence is present.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+- project-runtime/agent-results/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001_PASS.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+- project-runtime/AGENT_RESULTS_LOG.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_BOOTSTRAP_DESIGNER_001
+GATE_ID: GATE_AUDIT_BOOTSTRAP_DESIGNER_001
+ACTION_ID: NEXT_AUDIT_BOOTSTRAP_DESIGNER_001
+STATUS: fail
+SUMMARY: Audit failed because downstream task packets are missing FILESYSTEM_GOVERNANCE and RUNTIME_GOVERNANCE sections; routed to governed designer correction.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md
+- project-runtime/agent-results/TASK_BOOTSTRAP_DESIGNER_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md
+- project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: invalid_task_packet_schema
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: designer
+TASK_ID: TASK_BOOTSTRAP_DESIGNER_001
+GATE_ID: GATE_BOOTSTRAP_DESIGNER_READY_001
+ACTION_ID: NEXT_BOOTSTRAP_DESIGNER_001
+STATUS: pass
+SUMMARY: Designer returned pass and created architecture intake plus two downstream task packets; mandatory audit is required before continuation.
+INPUT_REFS:
+- project-runtime/bootstrap/TASK_BOOTSTRAP_DESIGNER_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_BOOTSTRAP_DESIGNER_001.md
+- project-docs/01_architecture/ARCH_BOOTSTRAP_DESIGN_INTAKE_001.md
+- project-docs/03_tasks/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: bootstrap_route
 ACTOR: orchestrator
 TASK_ID: TASK_BOOTSTRAP_DESIGNER_001

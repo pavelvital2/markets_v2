@@ -3,5 +3,16 @@
 ## Artifact entries
 
 ```text
-NONE
+TASK_ID: TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001
+STATUS: checkpoint_pending
+ACCEPTED_FILES:
+- project-docs/01_architecture/ARCH_BOOTSTRAP_DESIGN_INTAKE_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001.md
+- project-docs/03_tasks/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+- project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+- project-docs/03_tasks/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
+- project-docs/03_tasks/TASK_RESEARCH_SOURCE_DISCOVERY_001.md
+- project-runtime/*
+COMMIT_HASH: pending_commit
 ```

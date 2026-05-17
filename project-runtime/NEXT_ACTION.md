@@ -5,32 +5,31 @@
 Required structured fields:
 
 ```text
-ACTION_ID: NEXT_BOOTSTRAP_DESIGNER_001
-ACTION_TYPE: create_agent
-TARGET_ROLE: designer
-TASK_ID: TASK_BOOTSTRAP_DESIGNER_001
-TASK_PACKET: project-runtime/bootstrap/TASK_BOOTSTRAP_DESIGNER_001.md
+ACTION_ID: NEXT_LOCAL_CHECKPOINT_COMMIT_001
+ACTION_TYPE: update_state
+TARGET_ROLE: orchestrator
+TASK_ID: TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001
+TASK_PACKET: NONE
 DEPENDENCY_STATUS: ready
 BLOCKED_BY: NONE
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_REQUIRED: yes
 REPOSITORY_LOCK_REQUIRED: yes
-CHECKPOINT_POLICY: forbidden
-CHECKPOINT_PREFLIGHT_REQUIRED: no
-CHECKPOINT_RECEIPT_REQUIRED: no
-CHECKPOINT_RECEIPT_REF: NONE
+CHECKPOINT_POLICY: local_only
+CHECKPOINT_PREFLIGHT_REQUIRED: yes
+CHECKPOINT_RECEIPT_REQUIRED: yes
+CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001_1.md
 REQUESTER_RETURN_CONTEXT: NONE
 BLOCKING_OR_RESUME_CONTEXT:
 NONE
 REQUIRED_UNIVERSAL_DOCS:
-- agent-system/01_roles/DESIGNER.md
-- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
-- agent-system/07_lifecycle/BOOTSTRAP_STAGE.md
+- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
+- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
 REQUIRED_PROJECT_DOCS:
-- project-input/TZ.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001_1.md
 EXPECTED_RESULT:
-- RESULT according to agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
-INSTRUCTION_FOR_ORCHESTRATOR: Dispatch exactly one designer bootstrap task.
+- local checkpoint commit
+INSTRUCTION_FOR_ORCHESTRATOR: Commit accepted aggregate bootstrap checkpoint files locally; do not push.
 ```
 
 ## Requester return context
@@ -48,25 +47,24 @@ NONE
 ## REQUIRED_UNIVERSAL_DOCS
 
 ```text
-- agent-system/01_roles/DESIGNER.md
-- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
-- agent-system/07_lifecycle/BOOTSTRAP_STAGE.md
+- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
+- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
 ```
 
 ## REQUIRED_PROJECT_DOCS
 
 ```text
-- project-input/TZ.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001_1.md
 ```
 
 ## EXPECTED_RESULT
 
 ```text
-- RESULT according to agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
+- local checkpoint commit
 ```
 
 ## Instruction for orchestrator
 
 ```text
-Dispatch exactly one designer bootstrap task.
+Commit accepted aggregate bootstrap checkpoint files locally; do not push.
 ```

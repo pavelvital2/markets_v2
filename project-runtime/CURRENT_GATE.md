@@ -3,18 +3,18 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_BOOTSTRAP_DESIGNER_READY_001
-GATE_NAME: Bootstrap designer dispatch ready
-GATE_TYPE: bootstrap
+GATE_ID: GATE_LOCAL_CHECKPOINT_COMMIT_001
+GATE_NAME: Local aggregate checkpoint commit
+GATE_TYPE: audit
 STATUS: active
 OWNER_ROLE: orchestrator
-TASK_ID: TASK_BOOTSTRAP_DESIGNER_001
-TASK_PACKET: project-runtime/bootstrap/TASK_BOOTSTRAP_DESIGNER_001.md
-ACTION_SEMANTIC: wait_for_owner
+TASK_ID: TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_BOOTSTRAP_CHECKPOINT_001.md
+ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
 CHECKPOINT_ELIGIBILITY: local_only
-CHECKPOINT_ELIGIBILITY_STATUS: ineligible
+CHECKPOINT_ELIGIBILITY_STATUS: eligible
 PROJECT_CHECKPOINT_STATUS: pending
 ```
 
@@ -28,14 +28,14 @@ PROJECT_CHECKPOINT_STATUS: pending
 ## Exit criteria
 
 ```text
-- first bootstrap task packet validates for dispatch
-- designer returns RESULT at project-runtime/agent-results/TASK_BOOTSTRAP_DESIGNER_001.md
+- local checkpoint commit succeeds
+- push is not attempted
 ```
 
 ## Required next role
 
 ```text
-designer
+orchestrator
 ```
 
 ## Gate evidence
@@ -55,5 +55,5 @@ NONE
 ## Notes
 
 ```text
-- No profile-agent was dispatched.
+- Designer profile-agent returned pass; mandatory audit is pending.
 ```

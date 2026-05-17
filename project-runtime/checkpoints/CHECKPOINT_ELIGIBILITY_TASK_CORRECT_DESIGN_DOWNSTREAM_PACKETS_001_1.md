@@ -1,0 +1,32 @@
+RECEIPT_ID: CHECKPOINT_ELIGIBILITY_TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001_1
+TASK_ID: TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001
+ATTEMPT_NO: 1
+CREATED_AT: dry_run
+CREATED_BY: orchestrator
+TASK_PACKET: project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md
+ACCEPTED_RESULT_REF: UNKNOWN
+AUDIT_REF: UNKNOWN
+AUDIT_STATUS: passed
+CHECKPOINT_POLICY: UNKNOWN
+CHECKPOINT_ELIGIBILITY_STATUS: blocked
+CHECKPOINT_PREFLIGHT_STATUS: failed
+CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh
+WORKSPACE_TYPE: project_workspace
+IDENTITY_CHECK_STATUS: blocked
+GIT_TARGET_CHECK_STATUS: matched
+FILE_SCOPE_CHECK_STATUS: failed
+TASK_PACKET_SCHEMA_STATUS: passed
+RUNTIME_SCHEMA_STATUS: passed
+SECRET_SCAN_STATUS: passed
+COMMIT_STATUS: not_attempted
+COMMIT_HASH: NONE
+COMMIT_BRANCH: main
+PUSH_STATUS: not_attempted
+PUSH_REMOTE: https://github.com/pavelvital2/markets_v2.git
+PUSH_BRANCH: main
+LAST_PUSH_TARGET_STATUS: matched
+PROJECT_CHECKPOINT_STATUS: blocked
+ACCEPTED_FILES: project-docs/01_architecture/ARCH_BOOTSTRAP_DESIGN_INTAKE_001.md project-docs/03_tasks/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md project-docs/03_tasks/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md project-docs/03_tasks/TASK_RESEARCH_SOURCE_DISCOVERY_001.md project-runtime/AGENT_RESULTS_LOG.md project-runtime/CURRENT_GATE.md project-runtime/NEXT_ACTION.md project-runtime/ORCHESTRATOR_EVENTS_LOG.md project-runtime/PROJECT_STATE.md project-runtime/STATUS_SUMMARY.md project-runtime/agent-results/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001_PASS.md project-runtime/agent-results/TASK_BOOTSTRAP_DESIGNER_001.md project-runtime/agent-results/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md 
+BLOCKED_BY: checkpoint_preflight
+FAILURE_REASON_REDACTED: changed_files_scope_check: forbidden_path:project-docs/01_architecture/ARCH_BOOTSTRAP_DESIGN_INTAKE_001.md; changed_files_scope_check: forbidden_path:project-docs/03_tasks/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md; changed_files_scope_check: path_not_allowed:project-docs/03_tasks/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md; changed_files_scope_check: forbidden_path:project-docs/03_tasks/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md; changed_files_scope_check: forbidden_path:project-runtime/AGENT_RESULTS_LOG.md; changed_files_scope_check: forbidden_path:project-runtime/CURRENT_GATE.md; changed_files_scope_check: forbidden_path:project-runtime/NEXT_ACTION.md; changed_files_scope_check: forbidden_path:project-runtime/ORCHESTRATOR_EVENTS_LOG.md; changed_files_scope_check: forbidden_path:project-runtime/PROJECT_STATE.md; changed_files_scope_check: forbidden_path:project-runtime/STATUS_SUMMARY.md; changed_files_scope_check: forbidden_path:project-runtime/agent-results/TASK_AUDIT_BOOTSTRAP_DESIGNER_001.md; changed_files_scope_check: forbidden_path:project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md; changed_files_scope_check: forbidden_path:project-runtime/agent-results/TASK_AUDIT_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001_PASS.md; changed_files_scope_check: forbidden_path:project-runtime/agent-results/TASK_BOOTSTRAP_DESIGNER_001.md; changed_files_scope_check: forbidden_path:project-runtime/agent-results/TASK_CORRECT_DESIGN_DOWNSTREAM_PACKETS_001.md; 
+RECOVERY_ROUTE: governed_correction_or_owner_handling

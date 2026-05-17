@@ -174,4 +174,25 @@ TASK_ID: TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
 SUMMARY: Market-parser-v2 skeleton audit passed; scope, source isolation, parser boundary, provider registry, config/export skeleton, tests, and secret exposure checks passed.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+SUMMARY: Parser contract/export/quality implementation completed with schema validation, provider-scoped compatibility mapping, export integrity checks, forbidden artifact detection, data-quality summaries, and synthetic tests.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+SUMMARY: Parser contract/export/quality audit passed; provider identity, schema version, compatibility mapping, export validation, forbidden artifact detection, data quality, tests, and secret exposure checks passed.
+
+DATE: 2026-05-17
+ROLE: tester
+TASK_ID: TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+SUMMARY: Parser contract/export/quality offline synthetic tests passed; provider identity, schema version, compatibility mapping, export validation, forbidden artifact detection, and data-quality summaries verified.
 ```

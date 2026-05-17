@@ -28,7 +28,7 @@ ACTUAL_BRANCH_AT_LOCK:
 main
 
 PUSH_ALLOWED:
-false
+true
 
 LOCK_ACCEPTED_BY:
 project_owner
@@ -38,6 +38,9 @@ LOCK_ACCEPTED_AT:
 
 LOCK_ACCEPTANCE_REF:
 User instruction: "Принимаю repository lock для github.com/pavelvital2/markets_v2 branch main. Baseline tracking разрешаю. PROJECT_INPUT_TRACKING_POLICY: owner-private/untracked"
+
+PUSH_AUTHORIZATION_REF:
+User instruction: "после локального checkpoint сделай пуш"
 
 PROJECT_INPUT_TRACKING_POLICY_OVERRIDE:
 tracked

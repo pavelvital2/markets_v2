@@ -29,6 +29,98 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001
+GATE_ID: GATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001
+ACTION_ID: NEXT_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001
+STATUS: passed
+SUMMARY: Aggregate parser contract/export/quality checkpoint preflight passed with include-untracked and push-requested yes.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001_1.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: pending
+ACCEPTED_FILES: aggregate_parser_contract_export_quality_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: test_result_received
+ACTOR: tester
+TASK_ID: TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001
+GATE_ID: GATE_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001
+ACTION_ID: NEXT_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+SUMMARY: Parser contract/export/quality testing passed; route accepted implementation bundle to checkpoint and push per owner authorization.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- project-runtime/agent-results/TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_PARSER_CONTRACT_EXPORT_QUALITY_CHECKPOINT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: pending
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001
+GATE_ID: GATE_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001
+ACTION_ID: NEXT_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+SUMMARY: Parser contract/export/quality audit passed; route accepted implementation to mandatory tester task before checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- project-runtime/agent-results/TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: developer
+TASK_ID: TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+GATE_ID: GATE_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+ACTION_ID: NEXT_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: pass
+SUMMARY: Parser contract/export/quality implementation completed; mandatory audit is required before checkpoint or downstream provider migration.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- market-parser-v2/*
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001

@@ -14,11 +14,13 @@ from typing import Any
 
 from market_parser_v2.core.config import ParserConfig
 from market_parser_v2.core.constants import (
+    FORBIDDEN_EXPORT_CONTENT_MARKERS,
     FORBIDDEN_EXPORT_NAME_PARTS,
     REQUIRED_EXPORT_FILES,
     SCHEMA_VERSION,
 )
-from market_parser_v2.core.contracts import validate_manifest
+from market_parser_v2.core.contracts import COMMON_MART_SCHEMAS, ValidationIssue, validate_manifest
+from market_parser_v2.core.quality import summarize_data_quality
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,7 @@ class ExportSkeletonResult:
     bundle_tar_gz: Path
     checksums_sha256: Path
     manifest_valid: bool
+    validation_issues: tuple[ValidationIssue, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -36,6 +39,33 @@ class ExportSkeletonResult:
             "bundle_tar_gz": str(self.bundle_tar_gz),
             "checksums_sha256": str(self.checksums_sha256),
             "manifest_valid": self.manifest_valid,
+            "validation_issues": [
+                {"code": issue.code, "message": issue.message, "field": issue.field}
+                for issue in self.validation_issues
+            ],
+        }
+
+
+@dataclass(frozen=True)
+class ExportValidationResult:
+    ok: bool
+    manifest_valid: bool
+    checksums_valid: bool
+    latest_valid: bool
+    forbidden_artifacts: tuple[str, ...]
+    issues: tuple[ValidationIssue, ...] = ()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "ok": self.ok,
+            "manifest_valid": self.manifest_valid,
+            "checksums_valid": self.checksums_valid,
+            "latest_valid": self.latest_valid,
+            "forbidden_artifacts": list(self.forbidden_artifacts),
+            "issues": [
+                {"code": issue.code, "message": issue.message, "field": issue.field}
+                for issue in self.issues
+            ],
         }
 
 
@@ -49,7 +79,24 @@ def create_export_skeleton(*, config: ParserConfig, marketplace: str, run_id: st
 
     with TemporaryDirectory(dir=config.paths.temp_path if config.paths.temp_path.exists() else None) as temp_dir:
         bundle_root = Path(temp_dir) / "bundle"
-        _write_placeholder_bundle_files(bundle_root, marketplace=marketplace, run_id=run_id)
+        quality_summary = summarize_data_quality(
+            run_id=run_id,
+            marketplace=marketplace,
+            source_system=marketplace,
+            component_statuses={
+                "suggest": "not_ready",
+                "filter": "not_ready",
+                "serp": "not_ready",
+                "sellers": "not_ready",
+                "export": "success",
+            },
+        )
+        _write_placeholder_bundle_files(
+            bundle_root,
+            marketplace=marketplace,
+            run_id=run_id,
+            data_quality_summary=quality_summary.to_dict(),
+        )
         checksums = _checksums_for_files(bundle_root, REQUIRED_EXPORT_FILES)
         _assert_export_file_names_safe(REQUIRED_EXPORT_FILES)
 
@@ -62,6 +109,7 @@ def create_export_skeleton(*, config: ParserConfig, marketplace: str, run_id: st
         marketplace=marketplace,
         run_id=run_id,
         checksums=checksums,
+        data_quality_summary=quality_summary.to_dict(),
     )
     manifest_path = run_dir / "manifest.json"
     _write_json(manifest_path, manifest)
@@ -87,58 +135,98 @@ def create_export_skeleton(*, config: ParserConfig, marketplace: str, run_id: st
         },
     )
 
-    validation = validate_manifest(manifest, source_system=marketplace)
+    validation = validate_export_artifacts(export_root=export_root, marketplace=marketplace, run_id=run_id)
     return ExportSkeletonResult(
         latest_json=latest_path,
         manifest_json=manifest_path,
         bundle_tar_gz=bundle_path,
         checksums_sha256=checksums_path,
         manifest_valid=validation.ok,
+        validation_issues=validation.issues,
     )
 
 
-def _write_placeholder_bundle_files(bundle_root: Path, *, marketplace: str, run_id: str) -> None:
-    _write_csv(bundle_root / "marts/queries.csv", ["marketplace", "source_system", "run_id", "query", "schema_version"])
-    _write_csv(
-        bundle_root / "marts/products.csv",
-        [
-            "marketplace",
-            "source_system",
-            "run_id",
-            "query",
-            "absolute_position",
-            "external_product_id",
-            "schema_version",
-        ],
+def validate_export_artifacts(*, export_root: Path, marketplace: str, run_id: str) -> ExportValidationResult:
+    run_dir = export_root / marketplace / run_id
+    latest_path = export_root / "latest.json"
+    manifest_path = run_dir / "manifest.json"
+    bundle_path = run_dir / "bundle.tar.gz"
+    checksums_path = run_dir / "checksums.sha256"
+
+    issues: list[ValidationIssue] = []
+    forbidden_artifacts: list[str] = []
+    manifest: dict[str, Any] = {}
+    latest: dict[str, Any] = {}
+
+    for path, field in (
+        (latest_path, "latest.json"),
+        (manifest_path, "manifest.json"),
+        (bundle_path, "bundle.tar.gz"),
+        (checksums_path, "checksums.sha256"),
+    ):
+        if not path.exists():
+            issues.append(ValidationIssue("missing_export_artifact", f"missing {field}", field))
+
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        issues.extend(validate_manifest(manifest, source_system=marketplace).issues)
+
+    if latest_path.exists():
+        latest = json.loads(latest_path.read_text(encoding="utf-8"))
+        expected_latest = {
+            "manifest_path": f"{marketplace}/{run_id}/manifest.json",
+            "bundle_path": f"{marketplace}/{run_id}/bundle.tar.gz",
+            "checksums_path": f"{marketplace}/{run_id}/checksums.sha256",
+        }
+        for field, expected in expected_latest.items():
+            if latest.get(field) != expected:
+                issues.append(ValidationIssue("latest_pointer_mismatch", f"latest {field} mismatch", field))
+        if latest.get("schema_version") != SCHEMA_VERSION:
+            issues.append(ValidationIssue("schema_version_mismatch", "latest schema_version mismatch", "schema_version"))
+
+    expected_checksums = _read_checksums_file(checksums_path) if checksums_path.exists() else {}
+    manifest_checksums = manifest.get("checksums") or {}
+    if manifest_checksums and manifest_checksums != expected_checksums:
+        issues.append(ValidationIssue("checksum_manifest_mismatch", "manifest checksums differ from checksums file", None))
+
+    archive_result = _validate_bundle_archive(bundle_path, expected_checksums)
+    issues.extend(archive_result[0])
+    forbidden_artifacts.extend(archive_result[1])
+
+    manifest_valid = not any(issue.code.startswith("missing_manifest") for issue in issues) and not any(
+        issue.field == "schema_version" or issue.field in {"source_system", "marketplace", "run_id"}
+        for issue in issues
     )
-    _write_csv(
-        bundle_root / "marts/sellers.csv",
-        ["marketplace", "source_system", "run_id", "external_seller_id", "seller_name", "schema_version"],
+    checksums_valid = not any("checksum" in issue.code for issue in issues)
+    latest_valid = not any(issue.code == "latest_pointer_mismatch" for issue in issues)
+    ok = not issues and not forbidden_artifacts
+    return ExportValidationResult(
+        ok=ok,
+        manifest_valid=manifest_valid,
+        checksums_valid=checksums_valid,
+        latest_valid=latest_valid,
+        forbidden_artifacts=tuple(forbidden_artifacts),
+        issues=tuple(issues),
     )
+
+
+def _write_placeholder_bundle_files(
+    bundle_root: Path,
+    *,
+    marketplace: str,
+    run_id: str,
+    data_quality_summary: dict[str, Any],
+) -> None:
+    _write_csv(bundle_root / "marts/queries.csv", list(COMMON_MART_SCHEMAS["queries"].fields))
+    _write_csv(bundle_root / "marts/products.csv", list(COMMON_MART_SCHEMAS["products"].fields))
+    _write_csv(bundle_root / "marts/sellers.csv", list(COMMON_MART_SCHEMAS["sellers"].fields))
     _write_csv(
         bundle_root / "marts/seller_query_product_bridge.csv",
-        [
-            "marketplace",
-            "source_system",
-            "run_id",
-            "query",
-            "external_product_id",
-            "external_seller_id",
-            "schema_version",
-        ],
+        list(COMMON_MART_SCHEMAS["seller_query_product_bridge"].fields),
     )
     _write_json(
         bundle_root / "quality/data_quality_summary.json",
-        {
-            "marketplace": marketplace,
-            "source_system": marketplace,
-            "run_id": run_id,
-            "status": "not_ready",
-            "usable_for_reports": "invalid_for_reports",
-            "warnings": ["skeleton export contains headers only"],
-            "errors": [],
-            "schema_version": SCHEMA_VERSION,
-        },
+        data_quality_summary | {"schema_version": SCHEMA_VERSION},
     )
     _write_json(
         bundle_root / "metadata/contract.json",
@@ -150,7 +238,13 @@ def _write_placeholder_bundle_files(bundle_root: Path, *, marketplace: str, run_
     )
 
 
-def _manifest_payload(*, marketplace: str, run_id: str, checksums: dict[str, str]) -> dict[str, Any]:
+def _manifest_payload(
+    *,
+    marketplace: str,
+    run_id: str,
+    checksums: dict[str, str],
+    data_quality_summary: dict[str, Any],
+) -> dict[str, Any]:
     return {
         "marketplace": marketplace,
         "source_system": marketplace,
@@ -172,11 +266,7 @@ def _manifest_payload(*, marketplace: str, run_id: str, checksums: dict[str, str
             "seller_query_product_bridge": 0,
         },
         "checksums": checksums,
-        "data_quality_summary": {
-            "run_status": "not_ready",
-            "report_usability": "invalid_for_reports",
-            "data_confidence_level": None,
-        },
+        "data_quality_summary": data_quality_summary,
         "usable_for_reports": "invalid_for_reports",
         "warnings": ["skeleton export contains no collected marketplace rows"],
         "errors": [],
@@ -207,3 +297,66 @@ def _assert_export_file_names_safe(relatives: tuple[str, ...]) -> None:
         lower = relative.lower()
         if any(part in lower for part in FORBIDDEN_EXPORT_NAME_PARTS):
             raise ValueError(f"forbidden export file name: {relative}")
+
+
+def _read_checksums_file(path: Path) -> dict[str, str]:
+    checksums: dict[str, str] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        digest, relative = line.split(None, 1)
+        checksums[relative.strip()] = digest
+    return checksums
+
+
+def _validate_bundle_archive(
+    bundle_path: Path,
+    expected_checksums: dict[str, str],
+) -> tuple[list[ValidationIssue], list[str]]:
+    issues: list[ValidationIssue] = []
+    forbidden_artifacts: list[str] = []
+    if not bundle_path.exists():
+        return issues, forbidden_artifacts
+
+    with tarfile.open(bundle_path, "r:gz") as archive:
+        members = [member for member in archive.getmembers() if member.isfile()]
+        names = [member.name for member in members]
+        for name in names:
+            if name.startswith("/") or ".." in Path(name).parts:
+                issues.append(ValidationIssue("unsafe_bundle_path", f"unsafe bundle path {name}", "bundle"))
+            if _is_forbidden_name(name):
+                forbidden_artifacts.append(name)
+                issues.append(ValidationIssue("forbidden_bundle_artifact", f"forbidden bundle artifact {name}", "bundle"))
+
+        for required in REQUIRED_EXPORT_FILES:
+            if required not in names:
+                issues.append(ValidationIssue("missing_required_export_file", f"bundle missing {required}", "bundle"))
+        for name in sorted(set(names) - set(REQUIRED_EXPORT_FILES)):
+            issues.append(ValidationIssue("unexpected_bundle_file", f"bundle has unexpected file {name}", "bundle"))
+
+        for member in members:
+            extracted = archive.extractfile(member)
+            payload = extracted.read() if extracted is not None else b""
+            digest = hashlib.sha256(payload).hexdigest()
+            if expected_checksums.get(member.name) != digest:
+                issues.append(ValidationIssue("checksum_mismatch", f"checksum mismatch for {member.name}", "checksums"))
+            if _contains_forbidden_content(payload):
+                forbidden_artifacts.append(member.name)
+                issues.append(
+                    ValidationIssue("forbidden_bundle_content", f"forbidden content in {member.name}", "bundle")
+                )
+
+    for required in REQUIRED_EXPORT_FILES:
+        if required not in expected_checksums:
+            issues.append(ValidationIssue("missing_checksum", f"missing checksum for {required}", "checksums"))
+    return issues, forbidden_artifacts
+
+
+def _is_forbidden_name(relative: str) -> bool:
+    lower = relative.lower()
+    return any(part in lower for part in FORBIDDEN_EXPORT_NAME_PARTS)
+
+
+def _contains_forbidden_content(payload: bytes) -> bool:
+    lower = payload[:1024 * 1024].lower()
+    return any(marker.encode("utf-8") in lower for marker in FORBIDDEN_EXPORT_CONTENT_MARKERS)

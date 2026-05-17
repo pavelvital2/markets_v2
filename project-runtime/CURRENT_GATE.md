@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
-GATE_NAME: Ozon provider migration checkpoint
-GATE_TYPE: checkpoint
+GATE_ID: GATE_DEV_MARKET_ANALYTICS_SKELETON_001
+GATE_NAME: Develop market analytics skeleton
+GATE_TYPE: implementation
 STATUS: active
-OWNER_ROLE: release_manager
-TASK_ID: TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
-TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
+OWNER_ROLE: developer
+TASK_ID: TASK_DEV_MARKET_ANALYTICS_SKELETON_001
+TASK_PACKET: project-docs/03_tasks/TASK_DEV_MARKET_ANALYTICS_SKELETON_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,22 +21,20 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- TASK_TEST_OZON_PROVIDER_MIGRATION_001 returned pass
-- tester result exists
+- TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001 checkpoint done
+- checkpoint pushed to origin main
 ```
 
 ## Exit criteria
 
 ```text
-- checkpoint preflight passes
-- checkpoint commit is created
-- checkpoint commit is pushed to origin main
+- developer RESULT returns pass, blocked, gap, or fail
 ```
 
 ## Required next role
 
 ```text
-release_manager
+developer
 ```
 
 ## Gate evidence
@@ -46,7 +44,7 @@ release_manager
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
 - project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md exists
-- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md exists
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001_1.md exists
 ```
 
 ## Blocking status
@@ -56,7 +54,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: checkpoint accepted Ozon provider migration bundle
+RESOLUTION_PATH: implement clean market analytics skeleton
 ```
 
 ## Notes

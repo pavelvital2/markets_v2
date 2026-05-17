@@ -5,34 +5,37 @@
 Required structured fields:
 
 ```text
-ACTION_ID: NEXT_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
-ACTION_TYPE: checkpoint
-TARGET_ROLE: release_manager
-TASK_ID: TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
-TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
+ACTION_ID: NEXT_DEV_MARKET_ANALYTICS_SKELETON_001
+ACTION_TYPE: create_agent
+TARGET_ROLE: developer
+TASK_ID: TASK_DEV_MARKET_ANALYTICS_SKELETON_001
+TASK_PACKET: project-docs/03_tasks/TASK_DEV_MARKET_ANALYTICS_SKELETON_001.md
 DEPENDENCY_STATUS: ready
 BLOCKED_BY: NONE
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_REQUIRED: yes
 REPOSITORY_LOCK_REQUIRED: yes
-CHECKPOINT_POLICY: required
-CHECKPOINT_PREFLIGHT_REQUIRED: yes
-CHECKPOINT_RECEIPT_REQUIRED: yes
+CHECKPOINT_POLICY: forbidden
+CHECKPOINT_PREFLIGHT_REQUIRED: no
+CHECKPOINT_RECEIPT_REQUIRED: no
 CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
 REQUESTER_RETURN_CONTEXT: NONE
 BLOCKING_OR_RESUME_CONTEXT:
 NONE
 REQUIRED_UNIVERSAL_DOCS:
-- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
-- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
-- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
+- agent-system/01_roles/DEVELOPER.md
+- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
 REQUIRED_PROJECT_DOCS:
-- project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
-- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+- project-docs/03_tasks/TASK_DEV_MARKET_ANALYTICS_SKELETON_001.md
+- project-docs/01_architecture/ARCH_MARKET_ANALYTICS_001.md
+- project-docs/01_architecture/ARCH_DATA_CONTRACTS_001.md
+- project-docs/01_architecture/ARCH_EXPORT_CONTRACT_001.md
+- project-docs/01_architecture/ARCH_DATA_QUALITY_MODEL_001.md
+- project-docs/01_architecture/ARCH_SECURITY_CONSTRAINTS_001.md
+- project-docs/06_runtime/RUNTIME_OUTLINE_001.md
 EXPECTED_RESULT:
-- checkpoint preflight receipt
-- checkpoint commit pushed to origin main
-INSTRUCTION_FOR_ORCHESTRATOR: Run checkpoint preflight with include-untracked and push-requested yes, commit accepted Ozon provider migration bundle, then push origin main.
+- developer RESULT according to AGENT_RESULT_TEMPLATE
+INSTRUCTION_FOR_ORCHESTRATOR: Dispatch exactly one developer task with reasoning_effort high.
 ```
 
 ## Requester return context
@@ -50,27 +53,30 @@ NONE
 ## REQUIRED_UNIVERSAL_DOCS
 
 ```text
-- agent-system/02_runtime/POST_AUDIT_GIT_CHECKPOINT.md
-- agent-system/09_validators/GIT_CHECKPOINT_VALIDATION_RULES.md
-- agent-system/09_validators/CHANGED_FILES_SCOPE_MATRIX.md
+- agent-system/01_roles/DEVELOPER.md
+- agent-system/03_templates/AGENT_RESULT_TEMPLATE.md
 ```
 
 ## REQUIRED_PROJECT_DOCS
 
 ```text
-- project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
-- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+- project-docs/03_tasks/TASK_DEV_MARKET_ANALYTICS_SKELETON_001.md
+- project-docs/01_architecture/ARCH_MARKET_ANALYTICS_001.md
+- project-docs/01_architecture/ARCH_DATA_CONTRACTS_001.md
+- project-docs/01_architecture/ARCH_EXPORT_CONTRACT_001.md
+- project-docs/01_architecture/ARCH_DATA_QUALITY_MODEL_001.md
+- project-docs/01_architecture/ARCH_SECURITY_CONSTRAINTS_001.md
+- project-docs/06_runtime/RUNTIME_OUTLINE_001.md
 ```
 
 ## EXPECTED_RESULT
 
 ```text
-- checkpoint preflight receipt
-- checkpoint commit pushed to origin main
+- developer RESULT according to AGENT_RESULT_TEMPLATE
 ```
 
 ## Instruction for orchestrator
 
 ```text
-Run checkpoint preflight with include-untracked and push-requested yes, commit accepted Ozon provider migration bundle, then push origin main.
+Dispatch exactly one developer task with reasoning_effort high.
 ```

@@ -195,4 +195,32 @@ TASK_ID: TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001.md
 SUMMARY: Parser contract/export/quality offline synthetic tests passed; provider identity, schema version, compatibility mapping, export validation, forbidden artifact detection, and data-quality summaries verified.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_DEV_WB_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+SUMMARY: WB provider migration completed for offline fixture path with normalized source_system=wb marts, checkpoints, latest mirrors, run reports, export bundle, and synthetic tests.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_WB_PROVIDER_MIGRATION_001
+STATUS: fail
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+SUMMARY: WB provider audit failed because forbidden source project wb-parser-v1 is dirty with cookie-named untracked artifacts and dispatch reasoning evidence was missing.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_WB_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+SUMMARY: WB provider re-audit passed after owner-owned baseline exception and dispatch reasoning evidence; scope, source identity, mapping, export/runtime artifacts, tests, and secret checks passed.
+
+DATE: 2026-05-17
+ROLE: tester
+TASK_ID: TASK_TEST_WB_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md
+SUMMARY: WB provider migration offline tests passed; source_system normalization, nmId/supplier mapping, V2 common mart validation, run reports, checkpoints, latest mirrors, export bundle, and provider-context joins verified.
 ```

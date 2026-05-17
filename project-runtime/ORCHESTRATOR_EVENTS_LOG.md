@@ -4,6 +4,52 @@
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+GATE_ID: GATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+ACTION_ID: NEXT_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+STATUS: pass
+SUMMARY: Aggregate WB provider migration checkpoint preflight passed with include-untracked and push-requested yes.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_attempted
+ACCEPTED_FILES: aggregate_wb_provider_migration_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: test_result_received
+ACTOR: tester
+TASK_ID: TASK_TEST_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_TEST_WB_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_TEST_WB_PROVIDER_MIGRATION_001
+STATUS: pass
+SUMMARY: WB provider migration offline tests passed; route accepted implementation, audit, and test bundle to aggregate checkpoint and push.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_TEST_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: bootstrap
 ACTOR: orchestrator
 TASK_ID: BOOTSTRAP_INPUT_WAIT_001
@@ -24,6 +70,119 @@ BRANCH: main
 PUSH_STATUS: not_required
 ACCEPTED_FILES: NONE
 FAILURE_REASON: missing_bootstrap_input
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_WB_PROVIDER_MIGRATION_RERUN_001
+ACTION_ID: NEXT_AUDIT_WB_PROVIDER_MIGRATION_RERUN_001
+STATUS: pass
+SUMMARY: WB provider migration re-audit passed; route accepted implementation to tester task before checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: owner_exception
+ACTOR: owner
+TASK_ID: TASK_AUDIT_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_WAIT_FOR_OWNER_WB_SOURCE_CLEANLINESS_001
+ACTION_ID: NEXT_WAIT_FOR_OWNER_WB_SOURCE_CLEANLINESS_001
+STATUS: accepted
+SUMMARY: Owner explicitly confirmed /home/pavel/projects/wb-parser-v1 dirty state is pre-existing owner-owned baseline and unrelated to markets_v2 work; cookie-named artifact contents remain uninspected.
+INPUT_REFS:
+- user confirmation in current session
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/PROJECT_STATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_dispatch
+ACTOR: orchestrator
+TASK_ID: TASK_DEV_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_DEV_WB_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_DEV_WB_PROVIDER_MIGRATION_001
+STATUS: dispatched
+SUMMARY: WB provider migration task required REASONING_LEVEL VALUE: high; orchestrator dispatched developer agent 019e36da-5d35-7bd3-89e5-57451b11af49 (Meitner) with reasoning_effort high.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_WB_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_AUDIT_WB_PROVIDER_MIGRATION_001
+STATUS: fail
+SUMMARY: WB provider audit failed on dirty forbidden source project and missing dispatch reasoning evidence; route to owner wait before tester/checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: dirty_forbidden_source_project_wb_parser_v1; missing_traceable_dispatch_reasoning_evidence
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: developer
+TASK_ID: TASK_DEV_WB_PROVIDER_MIGRATION_001
+GATE_ID: GATE_DEV_WB_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_DEV_WB_PROVIDER_MIGRATION_001
+STATUS: pass
+SUMMARY: WB provider migration completed for offline fixture path; mandatory audit is required before tester/checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+- market-parser-v2/*
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
 NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 ```
 

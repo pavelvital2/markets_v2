@@ -20,6 +20,7 @@ from market_parser_v2.core.constants import (
     SCHEMA_VERSION,
 )
 from market_parser_v2.core.contracts import COMMON_MART_SCHEMAS, ValidationIssue, validate_manifest
+from market_parser_v2.core.contracts import validate_mart_rows
 from market_parser_v2.core.quality import summarize_data_quality
 
 
@@ -110,6 +111,110 @@ def create_export_skeleton(*, config: ParserConfig, marketplace: str, run_id: st
         run_id=run_id,
         checksums=checksums,
         data_quality_summary=quality_summary.to_dict(),
+    )
+    manifest_path = run_dir / "manifest.json"
+    _write_json(manifest_path, manifest)
+
+    checksums_path = run_dir / "checksums.sha256"
+    checksums_path.write_text(
+        "".join(f"{digest}  {name}\n" for name, digest in sorted(checksums.items())),
+        encoding="utf-8",
+    )
+
+    latest_path = export_root / "latest.json"
+    _write_json(
+        latest_path,
+        {
+            "marketplace": marketplace,
+            "source_system": marketplace,
+            "run_id": run_id,
+            "schema_version": SCHEMA_VERSION,
+            "manifest_path": f"{marketplace}/{run_id}/manifest.json",
+            "bundle_path": f"{marketplace}/{run_id}/bundle.tar.gz",
+            "checksums_path": f"{marketplace}/{run_id}/checksums.sha256",
+            "updated_at_utc": datetime.now(UTC).isoformat(),
+        },
+    )
+
+    validation = validate_export_artifacts(export_root=export_root, marketplace=marketplace, run_id=run_id)
+    return ExportSkeletonResult(
+        latest_json=latest_path,
+        manifest_json=manifest_path,
+        bundle_tar_gz=bundle_path,
+        checksums_sha256=checksums_path,
+        manifest_valid=validation.ok,
+        validation_issues=validation.issues,
+    )
+
+
+def create_export_bundle(
+    *,
+    config: ParserConfig,
+    marketplace: str,
+    run_id: str,
+    mart_rows: dict[str, list[dict[str, Any]]],
+    component_statuses: dict[str, str],
+    row_statuses: tuple[str, ...] = (),
+    warnings: tuple[str, ...] = (),
+    errors: tuple[str, ...] = (),
+) -> ExportSkeletonResult:
+    if marketplace not in {"wb", "ozon"}:
+        raise ValueError(f"unsupported marketplace for export bundle: {marketplace}")
+
+    export_root = config.paths.export_path
+    run_dir = export_root / marketplace / run_id
+    run_dir.mkdir(parents=True, exist_ok=True)
+
+    normalized_marts = {
+        name: _normalize_mart_rows(name, mart_rows.get(name, [])) for name in COMMON_MART_SCHEMAS
+    }
+    validation_issues: list[ValidationIssue] = []
+    for mart_name, rows in normalized_marts.items():
+        validation = validate_mart_rows(
+            mart_name,
+            rows,
+            source_system=marketplace,
+            seller_data_expected=mart_name in {"products", "seller_query_product_bridge"} and bool(rows),
+        )
+        validation_issues.extend(validation.issues)
+
+    export_errors = tuple(errors) + tuple(issue.message for issue in validation_issues)
+    quality_summary = summarize_data_quality(
+        run_id=run_id,
+        marketplace=marketplace,
+        source_system=marketplace,
+        component_statuses=component_statuses,
+        row_statuses=row_statuses,
+        export_errors=export_errors,
+    )
+
+    with TemporaryDirectory(dir=config.paths.temp_path if config.paths.temp_path.exists() else None) as temp_dir:
+        bundle_root = Path(temp_dir) / "bundle"
+        _write_bundle_files(
+            bundle_root,
+            marketplace=marketplace,
+            run_id=run_id,
+            mart_rows=normalized_marts,
+            data_quality_summary=quality_summary.to_dict(),
+        )
+        checksums = _checksums_for_files(bundle_root, REQUIRED_EXPORT_FILES)
+        _assert_export_file_names_safe(REQUIRED_EXPORT_FILES)
+
+        bundle_path = run_dir / "bundle.tar.gz"
+        with tarfile.open(bundle_path, "w:gz") as archive:
+            for relative in REQUIRED_EXPORT_FILES:
+                archive.add(bundle_root / relative, arcname=relative)
+
+    manifest = _manifest_payload(
+        marketplace=marketplace,
+        run_id=run_id,
+        checksums=checksums,
+        data_quality_summary=quality_summary.to_dict(),
+        component_statuses=component_statuses,
+        row_counts={name: len(rows) for name, rows in normalized_marts.items()},
+        usable_for_reports=quality_summary.report_usability,
+        warnings=warnings + quality_summary.warnings,
+        errors=export_errors,
     )
     manifest_path = run_dir / "manifest.json"
     _write_json(manifest_path, manifest)
@@ -238,12 +343,61 @@ def _write_placeholder_bundle_files(
     )
 
 
+def _write_bundle_files(
+    bundle_root: Path,
+    *,
+    marketplace: str,
+    run_id: str,
+    mart_rows: dict[str, list[dict[str, Any]]],
+    data_quality_summary: dict[str, Any],
+) -> None:
+    _write_csv_rows(
+        bundle_root / "marts/queries.csv",
+        list(COMMON_MART_SCHEMAS["queries"].fields),
+        mart_rows["queries"],
+    )
+    _write_csv_rows(
+        bundle_root / "marts/products.csv",
+        list(COMMON_MART_SCHEMAS["products"].fields),
+        mart_rows["products"],
+    )
+    _write_csv_rows(
+        bundle_root / "marts/sellers.csv",
+        list(COMMON_MART_SCHEMAS["sellers"].fields),
+        mart_rows["sellers"],
+    )
+    _write_csv_rows(
+        bundle_root / "marts/seller_query_product_bridge.csv",
+        list(COMMON_MART_SCHEMAS["seller_query_product_bridge"].fields),
+        mart_rows["seller_query_product_bridge"],
+    )
+    _write_json(
+        bundle_root / "quality/data_quality_summary.json",
+        data_quality_summary | {"schema_version": SCHEMA_VERSION},
+    )
+    _write_json(
+        bundle_root / "metadata/contract.json",
+        {
+            "schema_version": SCHEMA_VERSION,
+            "source_system": marketplace,
+            "run_id": run_id,
+            "required_files": list(REQUIRED_EXPORT_FILES),
+            "marts": {name: list(schema.fields) for name, schema in sorted(COMMON_MART_SCHEMAS.items())},
+        },
+    )
+
+
 def _manifest_payload(
     *,
     marketplace: str,
     run_id: str,
     checksums: dict[str, str],
     data_quality_summary: dict[str, Any],
+    component_statuses: dict[str, str] | None = None,
+    row_counts: dict[str, int] | None = None,
+    usable_for_reports: str = "invalid_for_reports",
+    warnings: tuple[str, ...] = ("skeleton export contains no collected marketplace rows",),
+    errors: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     return {
         "marketplace": marketplace,
@@ -251,7 +405,7 @@ def _manifest_payload(
         "run_id": run_id,
         "schema_version": SCHEMA_VERSION,
         "export_created_at_utc": datetime.now(UTC).isoformat(),
-        "component_statuses": {
+        "component_statuses": component_statuses or {
             "suggest": "not_ready",
             "filter": "not_ready",
             "serp": "not_ready",
@@ -259,7 +413,7 @@ def _manifest_payload(
             "export": "success",
         },
         "file_list": list(REQUIRED_EXPORT_FILES),
-        "row_counts": {
+        "row_counts": row_counts or {
             "queries": 0,
             "products": 0,
             "sellers": 0,
@@ -267,9 +421,9 @@ def _manifest_payload(
         },
         "checksums": checksums,
         "data_quality_summary": data_quality_summary,
-        "usable_for_reports": "invalid_for_reports",
-        "warnings": ["skeleton export contains no collected marketplace rows"],
-        "errors": [],
+        "usable_for_reports": usable_for_reports,
+        "warnings": list(warnings),
+        "errors": list(errors),
     }
 
 
@@ -278,6 +432,20 @@ def _write_csv(path: Path, fieldnames: list[str]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, delimiter=";")
         writer.writeheader()
+
+
+def _write_csv_rows(path: Path, fieldnames: list[str], rows: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames, delimiter=";")
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({field: row.get(field, "") for field in fieldnames})
+
+
+def _normalize_mart_rows(mart_name: str, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    fields = COMMON_MART_SCHEMAS[mart_name].fields
+    return [{field: row.get(field, "") for field in fields} for row in rows]
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:

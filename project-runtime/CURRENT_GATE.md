@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_DEV_WB_PROVIDER_MIGRATION_001
-GATE_NAME: WB provider migration development
-GATE_TYPE: development
+GATE_ID: GATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+GATE_NAME: WB provider migration checkpoint
+GATE_TYPE: checkpoint
 STATUS: active
-OWNER_ROLE: developer
-TASK_ID: TASK_DEV_WB_PROVIDER_MIGRATION_001
-TASK_PACKET: project-docs/03_tasks/TASK_DEV_WB_PROVIDER_MIGRATION_001.md
+OWNER_ROLE: release_manager
+TASK_ID: TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,20 +21,22 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- parser contract/export/quality checkpoint commit f8fcc67 exists and was pushed
-- TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001 passed
+- TASK_TEST_WB_PROVIDER_MIGRATION_001 returned pass
+- tester result exists
 ```
 
 ## Exit criteria
 
 ```text
-- developer RESULT returns pass, blocked, gap, or fail
+- checkpoint preflight passes
+- checkpoint commit is created
+- checkpoint commit is pushed to origin main
 ```
 
 ## Required next role
 
 ```text
-developer
+release_manager
 ```
 
 ## Gate evidence
@@ -43,7 +45,8 @@ developer
 - project-input/TZ.md exists and is readable
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
-- project-docs/03_tasks/TASK_DEV_WB_PROVIDER_MIGRATION_001.md validates for dispatch
+- project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md exists
+- project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md exists
 ```
 
 ## Blocking status
@@ -53,11 +56,11 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: implement WB provider migration
+RESOLUTION_PATH: checkpoint accepted WB provider migration bundle
 ```
 
 ## Notes
 
 ```text
-- Push is authorized for future checkpoints.
+- Push is authorized for this checkpoint after local commit.
 ```

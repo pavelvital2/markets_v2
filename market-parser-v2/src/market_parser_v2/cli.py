@@ -15,6 +15,7 @@ from market_parser_v2.core.contracts import synthetic_contract_row, validate_con
 from market_parser_v2.core.export import create_export_skeleton
 from market_parser_v2.core.registry import get_provider, resolve_marketplace
 from market_parser_v2.core.run import new_run_id
+from market_parser_v2.providers.wb import WbProvider
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -40,6 +41,13 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--marketplace", choices=["wb", "ozon"], required=True)
     export.add_argument("--run-id", default=None)
     export.add_argument("--output-dir", type=Path, required=True)
+
+    wb_fixture = subcommands.add_parser(
+        "run-wb-synthetic",
+        help="Run the offline WB provider migration with built-in synthetic rows.",
+    )
+    wb_fixture.add_argument("--run-id", default=None)
+    wb_fixture.add_argument("--output-dir", type=Path, required=True)
 
     return parser
 
@@ -75,6 +83,12 @@ def main(argv: list[str] | None = None) -> int:
         )
         print(json.dumps(export_result.to_dict(), sort_keys=True))
         return 0
+
+    if args.command == "run-wb-synthetic":
+        config = ParserConfig.with_export_root(args.output_dir)
+        result = WbProvider().run_fixture(config=config, run_id=args.run_id or new_run_id())
+        print(json.dumps(result.to_dict(), sort_keys=True))
+        return 0 if result.export_result.manifest_valid else 1
 
     return 2
 

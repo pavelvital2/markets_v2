@@ -11,11 +11,12 @@ class RegistryTests(unittest.TestCase):
         self.assertEqual(resolve_marketplace("ozon"), ("ozon",))
         self.assertEqual(resolve_marketplace("all"), ("wb", "ozon"))
 
-    def test_registered_providers_are_offline_placeholders(self) -> None:
+    def test_registered_providers_do_not_enable_live_scraping(self) -> None:
         for provider_id in resolve_marketplace("all"):
             plan = get_provider(provider_id).build_plan()
             self.assertFalse(plan.live_scraping_enabled)
-            self.assertEqual(plan.status, "not_ready")
+        self.assertEqual(get_provider("wb").build_plan().status, "ready_offline_fixture")
+        self.assertEqual(get_provider("ozon").build_plan().status, "not_ready")
 
 
 if __name__ == "__main__":

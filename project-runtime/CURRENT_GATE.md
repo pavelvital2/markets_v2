@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
-GATE_NAME: Audit source discovery research result
-GATE_TYPE: audit
+GATE_ID: GATE_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+GATE_NAME: Design continuation after source discovery
+GATE_TYPE: design
 STATUS: active
-OWNER_ROLE: auditor
-TASK_ID: TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001
-TASK_PACKET: project-docs/03_tasks/TASK_AUDIT_RESEARCH_SOURCE_DISCOVERY_001.md
+OWNER_ROLE: designer
+TASK_ID: TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
+TASK_PACKET: project-docs/03_tasks/TASK_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -28,14 +28,14 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Exit criteria
 
 ```text
-- audit RESULT returns pass, blocked, gap, or fail
-- research output is accepted or rejected before design continuation
+- design continuation RESULT returns pass, blocked, gap, or fail
+- downstream artifacts are classified and schema-valid when dispatchable
 ```
 
 ## Required next role
 
 ```text
-auditor
+designer
 ```
 
 ## Gate evidence

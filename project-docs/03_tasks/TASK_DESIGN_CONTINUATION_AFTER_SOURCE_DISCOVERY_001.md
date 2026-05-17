@@ -83,12 +83,13 @@ OVERRIDE_REASON: Contract and task decomposition must use audited source discove
 
 ```text
 - TASK_RESEARCH_SOURCE_DISCOVERY_001 audit pass
+- aggregate research checkpoint commit 4d36a39
 ```
 
 ## DEPENDENCY_STATUS
 
 ```text
-pending
+ready
 ```
 
 ## REQUESTED_BY_ROLE

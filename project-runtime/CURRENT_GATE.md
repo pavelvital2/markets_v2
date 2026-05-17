@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001
-GATE_NAME: Market analytics skeleton checkpoint
-GATE_TYPE: checkpoint
+GATE_ID: GATE_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
+GATE_NAME: Document market analytics skeleton handoff
+GATE_TYPE: documentation
 STATUS: active
-OWNER_ROLE: release_manager
-TASK_ID: TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001
-TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001.md
+OWNER_ROLE: technical_writer
+TASK_ID: TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
+TASK_PACKET: project-docs/03_tasks/TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,22 +21,21 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001 returned pass
-- audit result exists
+- TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001 checkpoint done
+- checkpoint pushed to origin main
+- Stage plan requires technical writer handoff after accepted analytics skeleton developer-facing docs
 ```
 
 ## Exit criteria
 
 ```text
-- checkpoint preflight passes
-- checkpoint commit is created
-- checkpoint commit is pushed to origin main
+- technical writer RESULT returns pass, blocked, gap, or fail
 ```
 
 ## Required next role
 
 ```text
-release_manager
+technical_writer
 ```
 
 ## Gate evidence
@@ -46,6 +45,7 @@ release_manager
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
 - project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md exists
+- market-analytics/README.md exists
 - project-runtime/agent-results/TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001.md exists
 ```
 
@@ -56,7 +56,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: checkpoint accepted market analytics skeleton
+RESOLUTION_PATH: technical writer handoff for accepted analytics skeleton
 ```
 
 ## Notes

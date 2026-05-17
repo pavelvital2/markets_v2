@@ -29,6 +29,51 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+GATE_ID: GATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+ACTION_ID: NEXT_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+STATUS: committed
+SUMMARY: Market-parser-v2 skeleton checkpoint committed locally; push not attempted because repository lock forbids push.
+INPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/ACCEPTED_ARTIFACTS.md
+- project-runtime/TASK_REGISTRY.md
+COMMIT_HASH: ae0309b
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_market_parser_v2_skeleton_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: route_selected
+ACTOR: orchestrator
+TASK_ID: TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+GATE_ID: GATE_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+ACTION_ID: NEXT_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001
+STATUS: ready
+SUMMARY: Parser skeleton and source-contract design audits are accepted and checkpointed; selected common contract/export/quality implementation.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/CURRENT_GATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_route_commit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint_preflight
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001

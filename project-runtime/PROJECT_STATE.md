@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: checkpoint
-PROJECT_STATUS: checkpoint_pending
+CURRENT_PHASE: audit
+PROJECT_STATUS: audit_pending
 ```
 
 ## Workspace identity
@@ -42,14 +42,14 @@ CHECKPOINT_ELIGIBILITY_STATUS: eligible
 CHECKPOINT_PREFLIGHT_STATUS: passed
 CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001.md --role release_manager --include-untracked --push-requested no --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001_1.md
 CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001_1.md
-COMMIT_STATUS: pending
-LAST_COMMIT_HASH: 4d36a39
+COMMIT_STATUS: committed
+LAST_COMMIT_HASH: 9346f46
 LAST_COMMIT_BRANCH: main
 PUSH_STATUS: not_required
 LAST_PUSH_REMOTE: NONE
 LAST_PUSH_BRANCH: NONE
 LAST_PUSH_TARGET_STATUS: not_required
-PROJECT_CHECKPOINT_STATUS: pending_commit
+PROJECT_CHECKPOINT_STATUS: passed
 CHECKPOINT_BLOCKED_BY: NONE
 LAST_CHECKPOINT_FAILURE_REASON: NONE
 ```
@@ -58,7 +58,7 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 
 ```text
 ACTION_SEMANTIC: normal
-SEMANTIC_REASON: Correction audit passed; route accepted design continuation artifacts to local checkpoint.
+SEMANTIC_REASON: Design continuation artifacts checkpointed locally; route canonical design continuation audit task before downstream research/developer dispatch.
 ```
 
 ## Active branches
@@ -69,7 +69,7 @@ BLOCKER_TYPE: NONE
 STATUS: resolved
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: local checkpoint pending
+RESOLUTION_PATH: checkpoint complete; canonical design continuation audit pending
 ```
 
 ## Completed milestones

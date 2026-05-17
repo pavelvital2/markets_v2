@@ -26,7 +26,7 @@ ACCEPTED_FILES:
 COMMIT_HASH: 4d36a39
 
 TASK_ID: TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001
-STATUS: checkpoint_preflight_passed
+STATUS: checkpoint_done
 ACCEPTED_FILES:
 - project-docs/01_architecture/*
 - project-docs/02_stages/*
@@ -45,6 +45,6 @@ ACCEPTED_FILES:
 - project-docs/05_testing/*
 - project-docs/06_runtime/*
 - project-runtime/*
-COMMIT_HASH: pending
+COMMIT_HASH: 9346f46
 CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_DESIGN_CONTINUATION_CHECKPOINT_001_1.md
 ```

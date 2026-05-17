@@ -1,0 +1,18 @@
+# Runtime assets must stay out of Git.
+/data/
+/logs/
+/secrets/
+/cookies/
+/raw_archives/
+/temp/
+/exports/
+
+# Python local artifacts.
+/dist/
+/build/
+/*.egg-info/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

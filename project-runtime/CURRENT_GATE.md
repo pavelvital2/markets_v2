@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_DEV_MARKET_PARSER_V2_SKELETON_001
-GATE_NAME: Market parser v2 skeleton development
-GATE_TYPE: development
+GATE_ID: GATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+GATE_NAME: Market parser v2 skeleton checkpoint
+GATE_TYPE: checkpoint
 STATUS: active
-OWNER_ROLE: developer
-TASK_ID: TASK_DEV_MARKET_PARSER_V2_SKELETON_001
-TASK_PACKET: project-docs/03_tasks/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+OWNER_ROLE: orchestrator
+TASK_ID: TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,20 +21,20 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- source-contract design checkpoint commit d1a4851 exists
-- TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001 passed
+- TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001 returned pass
+- audit result exists
 ```
 
 ## Exit criteria
 
 ```text
-- developer RESULT returns pass, blocked, gap, or fail
+- checkpoint preflight passes and local-only commit is created
 ```
 
 ## Required next role
 
 ```text
-developer
+orchestrator
 ```
 
 ## Gate evidence
@@ -43,7 +43,7 @@ developer
 - project-input/TZ.md exists and is readable
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
-- project-docs/03_tasks/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md validates for dispatch
+- project-runtime/agent-results/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md exists
 ```
 
 ## Blocking status
@@ -53,7 +53,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: implement clean market-parser-v2 skeleton
+RESOLUTION_PATH: checkpoint accepted market-parser-v2 skeleton
 ```
 
 ## Notes

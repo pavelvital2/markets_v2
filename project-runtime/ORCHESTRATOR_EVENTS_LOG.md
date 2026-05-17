@@ -29,6 +29,76 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+GATE_ID: GATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+ACTION_ID: NEXT_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001
+STATUS: passed
+SUMMARY: Aggregate market-parser-v2 skeleton checkpoint preflight passed with include-untracked; push remains forbidden/not requested.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001_1.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_market_parser_v2_skeleton_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001
+GATE_ID: GATE_AUDIT_MARKET_PARSER_V2_SKELETON_001
+ACTION_ID: NEXT_AUDIT_MARKET_PARSER_V2_SKELETON_001
+STATUS: pass
+SUMMARY: Market-parser-v2 skeleton audit passed; route accepted skeleton bundle to local-only checkpoint before downstream contract/export implementation.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
+- project-runtime/agent-results/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_MARKET_PARSER_V2_SKELETON_CHECKPOINT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: developer
+TASK_ID: TASK_DEV_MARKET_PARSER_V2_SKELETON_001
+GATE_ID: GATE_DEV_MARKET_PARSER_V2_SKELETON_001
+ACTION_ID: NEXT_DEV_MARKET_PARSER_V2_SKELETON_001
+STATUS: pass
+SUMMARY: Clean market-parser-v2 skeleton completed; mandatory audit is required before checkpoint or downstream implementation dispatch.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+- market-parser-v2/*
+- project-docs/03_tasks/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001

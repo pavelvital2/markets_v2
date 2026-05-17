@@ -160,4 +160,18 @@ TASK_ID: TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001.md
 SUMMARY: Source-contract design continuation audit passed; changed-file scope, task schema, identity, forbidden path, runtime mutation, evidence, secret exposure, reasoning compliance, and tracked input policy checks passed.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_DEV_MARKET_PARSER_V2_SKELETON_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+SUMMARY: Clean market-parser-v2 skeleton created under allowed scope with offline provider registry, config boundaries, contract/export skeleton, CLI/API skeleton, and synthetic tests.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_MARKET_PARSER_V2_SKELETON_001.md
+SUMMARY: Market-parser-v2 skeleton audit passed; scope, source isolation, parser boundary, provider registry, config/export skeleton, tests, and secret exposure checks passed.
 ```

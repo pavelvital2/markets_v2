@@ -8,8 +8,11 @@ Architecture document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -62,6 +65,21 @@ The bundle must contain only files needed by analytics:
 - data-quality summary;
 - any contract metadata required for import validation.
 
+Recommended stable bundle paths:
+
+```text
+marts/queries.csv
+marts/products.csv
+marts/sellers.csv
+marts/seller_query_product_bridge.csv
+quality/data_quality_summary.json
+metadata/contract.json
+```
+
+Provider-specific raw/staging outputs are parser internals and are excluded
+from the analytics bundle unless a separate sanitized fixture/export contract
+is accepted.
+
 ## Forbidden Bundle Contents
 
 The bundle must not include:
@@ -75,6 +93,7 @@ The bundle must not include:
 - working logs;
 - secrets;
 - temporary files not required by analytics.
+- raw JSON fragments or raw HTML snapshots that may contain sensitive state.
 
 ## Checksums
 
@@ -88,6 +107,10 @@ The bundle must not include:
 
 Partial data is allowed only with explicit manifest status, component statuses, warnings, and data-quality summary. Analytics must surface partial-data warnings to users.
 
+Manifest status and data-quality summary must preserve provider and component
+partial/failure evidence. Ozon anti-bot, empty page, missing page, and blocked
+seller enrichment behavior must not be silently converted to success.
+
 ## Import Failure Rule
 
 Analytics must reject or quarantine bundles when:
@@ -98,4 +121,3 @@ Analytics must reject or quarantine bundles when:
 - provider identity is invalid;
 - required marts are absent for a run marked usable;
 - secret-like files are present in the bundle.
-

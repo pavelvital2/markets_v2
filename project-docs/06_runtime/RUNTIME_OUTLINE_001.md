@@ -8,8 +8,11 @@ Runtime design document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -93,3 +96,17 @@ Ozon runs require browser/Chromium behavior and cookie handling. Cookie path mus
 
 Concurrency and throttle must be configurable.
 
+Ozon provider migration must add shared V2 runtime infrastructure that the
+audited source-contract result reports as missing from the prototype: provider
+aware CLI, state/checkpoints, run reports, locks, validation, schema version,
+data-quality status, export bundle integration, and Web UI integration.
+
+Seller enrichment must support progress/resume because product-card visits are
+slow and block-sensitive.
+
+## WB Runtime Boundary
+
+WB provider migration may reuse the audited operational pattern of staged
+components, run reports, checkpoints, latest mirrors, and CSV compatibility,
+but common V2 runtime output must normalize provider identity to `wb` and must
+not preserve source defaults that conflict with the TZ.

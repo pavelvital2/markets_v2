@@ -8,8 +8,11 @@ Stage plan. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -25,7 +28,10 @@ Accepted high-level facts:
 - Ozon working Playwright/Chromium prototype exists.
 - Ozon lacks WB-style runtime infrastructure.
 
-Field-level facts remain unresolved in this design task because the detailed research report was not in the allowed read set.
+Historical note from the first design baseline: field-level facts were
+unresolved before source-contract research. Field-level provider facts used for
+migration are now bounded by `ARCH_PROVIDER_SOURCE_CONTRACTS_001.md` and the
+audited source-contract RESULTS.
 
 ## Stage 2: Design Baseline
 
@@ -95,6 +101,12 @@ Expected result:
 - implementation packets for provider migration;
 - audit and testing updates if needed.
 
+Mandatory audit task for this stage:
+
+- `TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001`
+
+No developer/provider migration task may run before this audit passes.
+
 ## Stage 6: Analytics Skeleton
 
 Dispatchable after design audit pass:
@@ -113,20 +125,46 @@ Expected result:
 
 Full UI analytics implementation waits for accepted contracts and importer behavior.
 
-## Stage 7: Provider Migration and Export
+## Stage 7: Common Parser Contract, Export, and Quality Enforcement
 
-Not dispatchable from this design baseline. Requires Stage 4 and Stage 5 results.
+Dispatchable after parser skeleton audit pass and Stage 5 design-continuation
+audit pass:
 
-Expected future work:
+- `TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001`
+- `TASK_AUDIT_PARSER_CONTRACT_EXPORT_QUALITY_001`
+- `TASK_TEST_PARSER_CONTRACT_EXPORT_QUALITY_001`
 
-- WB provider migration;
-- Ozon provider migration;
-- run reports;
-- checkpoints;
-- latest mirrors;
-- export bundle implementation.
+Expected result:
 
-## Stage 8: Market Intelligence MVP
+- V2 schema definitions for common marts and bridge;
+- provider identity validation;
+- source compatibility mapping helpers;
+- manifest/checksum/export validation;
+- data-quality status mapping;
+- secret/raw artifact exclusion checks.
+
+## Stage 8: Provider Migration
+
+Dispatchable after Stage 7 implementation passes audit/testing and provider
+dependencies are ready:
+
+- `TASK_DEV_WB_PROVIDER_MIGRATION_001`
+- `TASK_AUDIT_WB_PROVIDER_MIGRATION_001`
+- `TASK_TEST_WB_PROVIDER_MIGRATION_001`
+- `TASK_DEV_OZON_PROVIDER_MIGRATION_001`
+- `TASK_AUDIT_OZON_PROVIDER_MIGRATION_001`
+- `TASK_TEST_OZON_PROVIDER_MIGRATION_001`
+
+Expected result:
+
+- WB provider behind V2 provider abstraction;
+- Ozon provider behind V2 provider abstraction;
+- run reports, checkpoints, latest mirrors, and export integration per provider;
+- no source project mutation;
+- no live scraping required by default tests;
+- partial/failure quality behavior for Ozon unstable frontend and anti-bot cases.
+
+## Stage 9: Market Intelligence MVP
 
 Not dispatchable from this design baseline.
 
@@ -150,4 +188,3 @@ Technical writer handoff is required after:
 - accepted runtime hardening before production use.
 
 Technical writer must not run before the relevant developer/tester/auditor flow is complete.
-

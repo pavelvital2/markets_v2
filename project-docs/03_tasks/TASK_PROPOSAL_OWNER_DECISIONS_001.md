@@ -45,7 +45,7 @@ designer
 ## PROPOSED_SCOPE
 
 ```text
-- convert owner decisions on analytics formulas, thresholds, partial data states, and own-store source priority into governed design inputs
+- convert owner decisions on analytics formulas, thresholds, partial data states, source-contract retention policy, and own-store source priority into governed design inputs
 - keep the work non-dispatchable until a full TASK_PACKET_TEMPLATE-compatible task is created
 ```
 
@@ -56,6 +56,7 @@ designer
 - Define default thresholds for opportunity_score and competition_score.
 - Decide which partial data states may be used for owner-facing reports.
 - Decide whether initial MVP shows score placeholders, hides scores, or ships simple clearly labeled formulas after design approval.
+- Decide retention and visibility policy for sanitized raw fixtures, raw JSON fragments, HTML snapshots, and HAR-derived artifacts.
 - Decide future own-store source priority: WB/Ozon Seller APIs, Excel exports, or internal product directory first.
 ```
 

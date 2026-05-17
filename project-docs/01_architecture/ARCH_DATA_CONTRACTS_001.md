@@ -8,18 +8,30 @@ Architecture document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
-Define the initial cross-provider data contract boundaries for parser marts and analytics import.
+Define the cross-provider data contract boundaries for parser marts and analytics import.
 
 ## Contract Status
 
-This is an initial architecture contract. It is sufficient for skeletons, validators, and schema-version placeholders.
+This contract is finalized for bounded provider migration where audited
+source-contract evidence is sufficient.
 
-It is not sufficient for final provider migration because exact WB/Ozon source fields, sample outputs, and optionality were not available in the allowed read set. Those facts require audited research dependencies.
+Provider-specific source field evidence, compatibility mappings, unresolved
+findings, and migration constraints are bounded in:
+
+```text
+project-docs/01_architecture/ARCH_PROVIDER_SOURCE_CONTRACTS_001.md
+```
+
+The contract remains intentionally incomplete for business formulas,
+management thresholds, and unsupported source facts.
 
 ## Mandatory Service Fields
 
@@ -58,6 +70,18 @@ source_system + query
 
 WB `nmId` and Ozon product identifiers must not be joined without provider context.
 
+Provider compatibility mapping:
+
+```text
+WB nmId -> external_product_id
+Ozon compatibility nmId -> external_product_id
+WB supplier_id -> external_seller_id
+Ozon compatibility supplier_id -> external_seller_id
+supplier_name -> seller_name
+```
+
+Ozon compatibility `nmId` is not a WB `nmId`.
+
 ## Query Contract
 
 Expected query analytics fields:
@@ -81,7 +105,9 @@ data_quality_status
 schema_version
 ```
 
-Fields that depend on source confirmation or future implementation may be nullable or omitted from provider-specific files until contract research resolves them.
+Fields that depend on future implementation or facts still unresolved by the
+audited research results may be nullable or omitted from provider-specific
+files until a bounded follow-up task resolves them.
 
 ## Product/SERP Contract
 
@@ -175,6 +201,10 @@ Provider-specific raw/staging outputs may have different internal formats if nor
 
 Every exported contract file must carry `schema_version`. Analytics import must reject or quarantine unsupported schema versions.
 
+Audited research confirms inspected source output arrays do not fully prove
+`schema_version` and `marketplace` in existing source outputs. They are V2
+required additions, not source-derived facts.
+
 ## Required Validation
 
 Validators must detect at least:
@@ -189,7 +219,6 @@ Validators must detect at least:
 
 ## Required Follow-Up
 
-- WB field-level contract research.
-- Ozon field-level contract research.
-- Design continuation after both source contract research tasks pass audit.
-
+- audit this design continuation before provider migration dispatch;
+- implement common parser contract/export/data-quality enforcement before provider migration completion;
+- keep owner formula and threshold decisions in non-dispatchable proposal scope.

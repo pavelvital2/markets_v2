@@ -8,8 +8,11 @@ Architecture document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -31,7 +34,7 @@ The parser must support marketplace execution for:
 - `ozon`;
 - `all`.
 
-## Confirmed Source Discovery Facts
+## Confirmed Source Facts
 
 The audited research result confirms these high-level facts:
 
@@ -41,7 +44,18 @@ The audited research result confirms these high-level facts:
 - No live scraping was run by the research task.
 - WB source-system defaults may differ from the TZ requirement: research reported a risk that WB code defaults appear as `wildberries`, while TZ requires `wb`.
 
-Exact source fields, source commands, sample outputs, retry rules, and implementation-level contracts are not available in the allowed read set for this design task and must be handled by follow-up audited research before provider migration.
+The audited WB/Ozon source-contract results now provide enough evidence to
+design provider migration tasks for confirmed data contracts, runtime gaps,
+export boundaries, and security constraints. Final source-contract mappings are
+bounded in `ARCH_PROVIDER_SOURCE_CONTRACTS_001.md`.
+
+Still unresolved and not safe to guess:
+
+- score formulas and thresholds;
+- exact generated CSV samples outside audited results;
+- WB test/config/SQLite internals outside audited results;
+- current live Ozon frontend shape;
+- raw Ozon response/HTML sensitivity before sanitization.
 
 ## Pipeline Boundary
 
@@ -98,18 +112,11 @@ If an intermediate compatibility field named `nmId` is ever used for Ozon data, 
 
 ## WB Provider Boundary
 
-WB provider implementation must be based on audited source facts before migration. The design may rely only on the currently audited high-level facts:
-
-- operational staged parser exists;
-- CLI exists;
-- SQLite state exists;
-- checkpoints exist;
-- latest mirrors exist;
-- run reports exist;
-- Web UI exists;
-- CSV contracts exist.
-
-Before migration work, an audited research dependency must confirm exact fields, commands, source-state behavior, retry/backoff, tests, and status semantics.
+WB provider migration must use the audited WB source-contract result as the
+contract evidence. V2 must normalize V1 `source_system=wildberries` to
+`source_system=wb`, add V2-only `marketplace`, `schema_version`, provider-neutral
+identifier aliases, and `data_quality_status`, and preserve run-scoped outputs,
+latest mirrors, reports, checkpoints, and CSV compatibility where required.
 
 ## Ozon Provider Boundary
 
@@ -127,7 +134,11 @@ The TZ requires:
 - configurable throttle/concurrency;
 - partial/failure status for anti-bot or empty page behavior.
 
-The audited research result confirms only the high-level prototype status and lack of WB-style runtime infrastructure. Exact scripts, fields, fixtures, and current tests require follow-up audited research before migration.
+The audited Ozon source-contract result confirms field-level prototype
+contracts, extraction behavior, tests, missing runtime infrastructure, and
+security risks. V2 must treat WB-shaped fields such as `nmId` and `supplier_id`
+as compatibility fields only and must normalize them to provider-aware common
+aliases.
 
 ## Export Responsibility
 
@@ -155,7 +166,9 @@ These require confirmed future data sources and separate tasks.
 
 ## Required Follow-Up
 
-- `TASK_RESEARCH_WB_SOURCE_CONTRACTS_001`
-- `TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001`
-- provider migration tasks after audited source-contract research
-
+- audit of this source-contract design continuation;
+- common parser contract/export/data-quality implementation task;
+- bounded WB provider migration task;
+- bounded Ozon provider migration task;
+- audit and testing tasks for each implementation task;
+- owner/design proposal for unresolved formulas, thresholds, and partial-data policy.

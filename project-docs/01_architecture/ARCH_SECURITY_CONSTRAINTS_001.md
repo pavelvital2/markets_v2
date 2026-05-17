@@ -8,8 +8,11 @@ Architecture document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -37,6 +40,9 @@ OZON_COOKIE_FILE
 
 The file content must not be logged, committed, included in fixtures, or shown in UI.
 
+Audited Ozon research reports a current prototype risk around env/path cookie
+handling and a local fallback cookie path. V2 must not hardcode cookie paths.
+
 ## Data Separation
 
 These categories must remain separate:
@@ -54,6 +60,11 @@ Data, logs, cookies, secrets, raw archives, and temporary files must not enter G
 ## Export Safety
 
 The parser export bundle must be sanitized and must contain only analytics-required files. It must not contain cookies, tokens, raw sensitive fixtures, browser profiles, working logs, or unsanitized HAR files.
+
+Raw response bodies, raw HTML snapshots, raw JSON fragments, HAR files, and
+fixtures are not safe for Git or analytics export until a sanitizer has removed
+secret-like request/response state and the resulting artifact is explicitly
+classified as sanitized.
 
 ## Identifier Safety
 
@@ -78,4 +89,3 @@ Direct external service ports should be closed in target mode except 80/443.
 ## Backup and Retention
 
 Architecture must include backup/restore policy and data-retention policy before production hardening.
-

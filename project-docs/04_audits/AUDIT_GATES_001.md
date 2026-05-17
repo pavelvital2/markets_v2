@@ -8,8 +8,11 @@ Audit design document. Not a task packet.
 
 - `project-input/TZ.md`
 - audited runtime result `project-runtime/agent-results/TASK_RESEARCH_SOURCE_DISCOVERY_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md`
+- audited research result `project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md`
 
-No source project files were inspected for this document.
+Source-contract updates use only audited research RESULTS. No source project
+files were inspected for this design continuation.
 
 ## Purpose
 
@@ -71,9 +74,50 @@ After `TASK_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001`, auditor mus
 - finalized contracts cite audited research;
 - unresolved fields are marked as gaps or optional;
 - implementation packets are bounded;
-- provider migration tasks do not rely on unverified assumptions.
+- provider migration tasks do not rely on unverified assumptions;
+- changed task-like artifacts pass task packet/proposal validation.
 
-## Gate F: MVP Implementation Audits
+Task packet:
+
+```text
+project-docs/03_tasks/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_CONTRACT_RESEARCH_001.md
+```
+
+## Gate F: Parser Contract/Export/Quality Audit
+
+After `TASK_DEV_PARSER_CONTRACT_EXPORT_QUALITY_001`, auditor must verify:
+
+- schema definitions implement required provider identity and `schema_version`;
+- compatibility mappings do not mix WB/Ozon identifiers;
+- export layout contains only analytics-required artifacts;
+- checksums and manifest validation are implemented;
+- raw sensitive artifacts, cookies, HAR files, and browser profiles are excluded;
+- data-quality statuses preserve partial/failure evidence.
+
+## Gate G: Provider Migration Audits
+
+After `TASK_DEV_WB_PROVIDER_MIGRATION_001`, auditor must verify:
+
+- WB source identity is normalized to `wb`;
+- WB `nmId`/supplier fields are mapped to common aliases with provider context;
+- WB staged outputs, checkpoints, latest mirrors, run reports, and CSV compatibility are integrated with V2 boundaries;
+- unresolved WB source internals are not guessed.
+
+After `TASK_DEV_OZON_PROVIDER_MIGRATION_001`, auditor must verify:
+
+- Ozon `nmId`/`supplier_id` compatibility fields are not treated as WB ids;
+- suggest uses first 5 `webSuggestions*` dropdown suggestions;
+- SERP pagination treats `nextPage` as opaque and uses actual `items.length`;
+- seller enrichment uses product-card state, document-only loading, progress/resume, and partial/failure statuses;
+- cookie paths are env/path based and no hardcoded local cookie fallback exists.
+
+## Gate H: Provider Migration Testing
+
+Tester tasks must verify contract/export behavior and provider migration using
+synthetic sanitized fixtures or mocked inputs by default. Live scraping is out
+of scope unless a future task explicitly allows it.
+
+## Gate I: MVP Implementation Audits
 
 Future MVP implementation tasks require audits for:
 
@@ -84,4 +128,3 @@ Future MVP implementation tasks require audits for:
 - history and dynamics;
 - security constraints;
 - runtime exposure.
-

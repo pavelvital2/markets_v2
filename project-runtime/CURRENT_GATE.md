@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
-GATE_NAME: Document market analytics skeleton handoff
-GATE_TYPE: documentation
+GATE_ID: GATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001
+GATE_NAME: Market analytics handoff checkpoint
+GATE_TYPE: checkpoint
 STATUS: active
-OWNER_ROLE: technical_writer
-TASK_ID: TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
-TASK_PACKET: project-docs/03_tasks/TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001.md
+OWNER_ROLE: release_manager
+TASK_ID: TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_HANDOFF_CHECKPOINT_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,21 +21,22 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001 checkpoint done
-- checkpoint pushed to origin main
-- Stage plan requires technical writer handoff after accepted analytics skeleton developer-facing docs
+- TASK_AUDIT_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001 returned pass after correction
+- audit result exists
 ```
 
 ## Exit criteria
 
 ```text
-- technical writer RESULT returns pass, blocked, gap, or fail
+- checkpoint preflight passes
+- checkpoint commit is created
+- checkpoint commit is pushed to origin main
 ```
 
 ## Required next role
 
 ```text
-technical_writer
+release_manager
 ```
 
 ## Gate evidence
@@ -45,8 +46,7 @@ technical_writer
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
 - project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md exists
-- market-analytics/README.md exists
-- project-runtime/agent-results/TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001.md exists
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001.md exists
 ```
 
 ## Blocking status
@@ -56,7 +56,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: technical writer handoff for accepted analytics skeleton
+RESOLUTION_PATH: checkpoint accepted analytics handoff documentation
 ```
 
 ## Notes

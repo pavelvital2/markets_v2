@@ -286,4 +286,32 @@ TASK_ID: TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001.md
 SUMMARY: Market analytics skeleton audit passed; scope, analytics/parser boundary, export bundle import, manifest/checksum validation, run registry identity, auth placeholder, synthetic tests, and secret checks passed.
+
+DATE: 2026-05-17
+ROLE: technical_writer
+TASK_ID: TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001.md
+SUMMARY: Market analytics skeleton handoff README updated with setup commands, FastAPI prerequisite, parser export-bundle boundary, auth environment configuration, and Stage 9 not-dispatchable limitation.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
+STATUS: fail
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001.md
+SUMMARY: Documentation audit failed because README documents MARKET_ANALYTICS_BASIC_AUTH_PASSWORD while implementation reads MARKET_ANALYTICS_BASIC_AUTH_SECRET.
+
+DATE: 2026-05-17
+ROLE: technical_writer
+TASK_ID: TASK_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001.md
+SUMMARY: README auth environment variable corrected to MARKET_ANALYTICS_BASIC_AUTH_SECRET to match implementation and avoid conflicting password wording.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_DOC_MARKET_ANALYTICS_SKELETON_HANDOFF_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_DOC_MARKET_ANALYTICS_AUTH_ENV_001.md
+SUMMARY: Corrected analytics handoff documentation audit passed; README auth env names match config.py, obsolete password wording is absent, setup/import-boundary/Stage 9 limitation wording is accurate, and no secrets are present.
 ```

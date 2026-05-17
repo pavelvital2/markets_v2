@@ -4,6 +4,30 @@
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+GATE_ID: GATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+ACTION_ID: NEXT_WB_PROVIDER_MIGRATION_CHECKPOINT_001
+STATUS: checkpoint_done
+SUMMARY: WB provider migration checkpoint committed locally and pushed to origin main after owner authorization; route next to Ozon provider migration.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/ACCEPTED_ARTIFACTS.md
+- project-runtime/NEXT_ACTION.md
+- project-runtime/PROJECT_STATE.md
+COMMIT_HASH: 35cdd55
+BRANCH: main
+PUSH_STATUS: pushed
+ACCEPTED_FILES: aggregate_wb_provider_migration_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint_preflight
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001

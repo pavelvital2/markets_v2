@@ -16,7 +16,7 @@ class RegistryTests(unittest.TestCase):
             plan = get_provider(provider_id).build_plan()
             self.assertFalse(plan.live_scraping_enabled)
         self.assertEqual(get_provider("wb").build_plan().status, "ready_offline_fixture")
-        self.assertEqual(get_provider("ozon").build_plan().status, "not_ready")
+        self.assertEqual(get_provider("ozon").build_plan().status, "ready_offline_fixture")
 
 
 if __name__ == "__main__":

@@ -3,13 +3,13 @@
 ## Current gate
 
 ```text
-GATE_ID: GATE_DEV_OZON_PROVIDER_MIGRATION_001
-GATE_NAME: Develop Ozon provider migration
-GATE_TYPE: implementation
+GATE_ID: GATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
+GATE_NAME: Ozon provider migration checkpoint
+GATE_TYPE: checkpoint
 STATUS: active
-OWNER_ROLE: developer
-TASK_ID: TASK_DEV_OZON_PROVIDER_MIGRATION_001
-TASK_PACKET: project-docs/03_tasks/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+OWNER_ROLE: release_manager
+TASK_ID: TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
+TASK_PACKET: project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
 ACTION_SEMANTIC: normal
 WORKSPACE_IDENTITY_STATUS: passed
 REPOSITORY_LOCK_STATUS: accepted
@@ -21,21 +21,22 @@ PROJECT_CHECKPOINT_STATUS: passed
 ## Entry criteria
 
 ```text
-- TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001 checkpoint done
-- checkpoint pushed to origin main
-- TASK_DEV_OZON_PROVIDER_MIGRATION_001 dependencies satisfied by prior checkpoints
+- TASK_TEST_OZON_PROVIDER_MIGRATION_001 returned pass
+- tester result exists
 ```
 
 ## Exit criteria
 
 ```text
-- developer RESULT returns pass, blocked, gap, or fail
+- checkpoint preflight passes
+- checkpoint commit is created
+- checkpoint commit is pushed to origin main
 ```
 
 ## Required next role
 
 ```text
-developer
+release_manager
 ```
 
 ## Gate evidence
@@ -45,8 +46,7 @@ developer
 - project-runtime/WORKSPACE_IDENTITY.md accepted
 - project-runtime/REPOSITORY_LOCK.md accepted
 - project-runtime/agent-results/TASK_AUDIT_WB_PROVIDER_MIGRATION_001.md exists
-- project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md exists
-- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001_1.md exists
+- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md exists
 ```
 
 ## Blocking status
@@ -56,7 +56,7 @@ BLOCKER_ID: NONE
 BLOCKER_TYPE: NONE
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: implement Ozon provider migration
+RESOLUTION_PATH: checkpoint accepted Ozon provider migration bundle
 ```
 
 ## Notes

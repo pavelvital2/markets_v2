@@ -4,6 +4,216 @@
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
+GATE_ID: GATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
+ACTION_ID: NEXT_OZON_PROVIDER_MIGRATION_CHECKPOINT_001
+STATUS: pass
+SUMMARY: Aggregate Ozon provider migration checkpoint preflight passed with include-untracked and push-requested yes.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_attempted
+ACCEPTED_FILES: aggregate_ozon_provider_migration_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: test_result_received
+ACTOR: tester
+TASK_ID: TASK_TEST_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_TEST_OZON_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_TEST_OZON_PROVIDER_MIGRATION_001
+STATUS: pass
+SUMMARY: Ozon provider migration offline tests passed; route accepted implementation, correction, audit, and test bundle to aggregate checkpoint and push.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_OZON_PROVIDER_MIGRATION_RERUN_002
+ACTION_ID: NEXT_AUDIT_OZON_PROVIDER_MIGRATION_RERUN_002
+STATUS: pass
+SUMMARY: Full Ozon provider migration re-audit passed after accepted seller-quality correction; route accepted implementation to tester before checkpoint.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_test
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+GATE_ID: GATE_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+ACTION_ID: NEXT_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+STATUS: pass
+SUMMARY: Ozon missing seller quality correction audit passed; route back to full Ozon provider migration re-audit before tester.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-runtime/agent-results/TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_main_audit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: correction_result_received
+ACTOR: developer
+TASK_ID: TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+GATE_ID: GATE_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+ACTION_ID: NEXT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+STATUS: pass
+SUMMARY: Ozon missing seller quality correction passed focused and full tests; route to mandatory correction audit.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-docs/03_tasks/TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_audit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_OZON_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_AUDIT_OZON_PROVIDER_MIGRATION_RERUN_001
+STATUS: fail
+SUMMARY: Ozon re-audit accepted runtime scope attribution but failed implementation because missing seller enrichment does not downgrade affected product/common mart row quality; route to focused developer correction.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-docs/03_tasks/TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_correction
+FAILURE_REASON: missing_seller_quality_not_propagated
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: orchestrator_scope_attribution
+ACTOR: orchestrator
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_OZON_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_AUDIT_OZON_PROVIDER_MIGRATION_RERUN_001
+STATUS: accepted
+SUMMARY: project-runtime/* changes in the current worktree are orchestrator-owned route/result records created after developer result receipt; developer-owned changed-file scope remains market-parser-v2/*.
+INPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/PROJECT_STATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: project-runtime_scope_attribution
+FAILURE_REASON: prior_audit_unattributed_runtime_scope
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_AUDIT_OZON_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_AUDIT_OZON_PROVIDER_MIGRATION_001
+STATUS: fail
+SUMMARY: Ozon audit failed on unattributed project-runtime/* changes in combined worktree; implementation evidence and secret/cookie checks otherwise found no blocking implementation failure.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: unattributed_orchestrator_runtime_scope
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: implementation_result_received
+ACTOR: developer
+TASK_ID: TASK_DEV_OZON_PROVIDER_MIGRATION_001
+GATE_ID: GATE_DEV_OZON_PROVIDER_MIGRATION_001
+ACTION_ID: NEXT_DEV_OZON_PROVIDER_MIGRATION_001
+STATUS: pass
+SUMMARY: Ozon provider migration completed for offline mocked/sanitized path; route to mandatory implementation audit before tester verification.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+- project-runtime/NEXT_ACTION.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_audit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_WB_PROVIDER_MIGRATION_CHECKPOINT_001

@@ -223,4 +223,53 @@ TASK_ID: TASK_TEST_WB_PROVIDER_MIGRATION_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_TEST_WB_PROVIDER_MIGRATION_001.md
 SUMMARY: WB provider migration offline tests passed; source_system normalization, nmId/supplier mapping, V2 common mart validation, run reports, checkpoints, latest mirrors, export bundle, and provider-context joins verified.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_DEV_OZON_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DEV_OZON_PROVIDER_MIGRATION_001.md
+SUMMARY: Ozon provider migration completed for offline mocked/sanitized path with suggest, SERP, seller enrichment, checkpoints/resume, reports, quality statuses, common marts, and export bundle integration.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+STATUS: fail
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+SUMMARY: Ozon audit failed on unattributed project-runtime/* files in combined worktree; implementation evidence and secret/cookie checks otherwise showed no blocking implementation failure.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+STATUS: fail
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+SUMMARY: Ozon re-audit accepted runtime scope attribution but failed implementation because missing seller enrichment does not downgrade affected product/common mart row quality.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+SUMMARY: Ozon missing seller quality correction completed; affected product/common/export rows now downgrade to partial_use_with_warning while fully enriched rows remain valid.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_OZON_PROVIDER_MISSING_SELLER_QUALITY_001.md
+SUMMARY: Ozon missing seller quality correction audit passed; correction scope, row-level quality downgrade, preserved valid rows, tests, and secret/forbidden path checks passed.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_OZON_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_OZON_PROVIDER_MIGRATION_001.md
+SUMMARY: Full Ozon provider migration re-audit passed after accepted seller-quality correction; contract behavior, cookie/raw safety, quality propagation, export exclusions, and focused tests are acceptable for tester handoff.
+
+DATE: 2026-05-17
+ROLE: tester
+TASK_ID: TASK_TEST_OZON_PROVIDER_MIGRATION_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+SUMMARY: Ozon provider migration offline tests passed; focused Ozon suite 6/6 and full unit suite 30/30 passed with mocked probes for anti-bot, empty, missing-page, and forbidden export artifacts.
 ```

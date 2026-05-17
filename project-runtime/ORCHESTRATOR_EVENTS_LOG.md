@@ -29,6 +29,51 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 
 ```text
 DATE: 2026-05-17
+EVENT_TYPE: checkpoint
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001
+GATE_ID: GATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001
+ACTION_ID: NEXT_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001
+STATUS: committed
+SUMMARY: Source-contract design bundle checkpoint committed locally; push not attempted because repository lock forbids push.
+INPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/ACCEPTED_ARTIFACTS.md
+- project-runtime/TASK_REGISTRY.md
+COMMIT_HASH: d1a4851
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_source_contract_design_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: route_selected
+ACTOR: orchestrator
+TASK_ID: TASK_DEV_MARKET_PARSER_V2_SKELETON_001
+GATE_ID: GATE_DEV_MARKET_PARSER_V2_SKELETON_001
+ACTION_ID: NEXT_DEV_MARKET_PARSER_V2_SKELETON_001
+STATUS: ready
+SUMMARY: Stage 7 common contracts remain dependency-blocked by skeleton audit; selected first ready implementation task for clean market-parser-v2 skeleton.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_DEV_MARKET_PARSER_V2_SKELETON_001.md
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001_1.md
+OUTPUT_REFS:
+- project-runtime/NEXT_ACTION.md
+- project-runtime/CURRENT_GATE.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_route_commit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
 EVENT_TYPE: checkpoint_preflight
 ACTOR: orchestrator
 TASK_ID: TASK_AGGREGATE_SOURCE_CONTRACT_DESIGN_CHECKPOINT_001

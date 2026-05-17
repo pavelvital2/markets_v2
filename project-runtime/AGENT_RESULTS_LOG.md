@@ -272,4 +272,18 @@ TASK_ID: TASK_TEST_OZON_PROVIDER_MIGRATION_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
 SUMMARY: Ozon provider migration offline tests passed; focused Ozon suite 6/6 and full unit suite 30/30 passed with mocked probes for anti-bot, empty, missing-page, and forbidden export artifacts.
+
+DATE: 2026-05-17
+ROLE: developer
+TASK_ID: TASK_DEV_MARKET_ANALYTICS_SKELETON_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_DEV_MARKET_ANALYTICS_SKELETON_001.md
+SUMMARY: Market analytics skeleton created with API/web route structure, import worker placeholder, run registry placeholder, provider-aware data placeholders, basic auth placeholder, export bundle validation, overview UI, and synthetic tests.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001.md
+SUMMARY: Market analytics skeleton audit passed; scope, analytics/parser boundary, export bundle import, manifest/checksum validation, run registry identity, auth placeholder, synthetic tests, and secret checks passed.
 ```

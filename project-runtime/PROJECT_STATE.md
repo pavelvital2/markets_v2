@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: implementation
-PROJECT_STATUS: implementation_pending
+CURRENT_PHASE: checkpoint
+PROJECT_STATUS: checkpoint_pending
 ```
 
 ## Workspace identity
@@ -40,16 +40,16 @@ CHECKPOINT_ELIGIBILITY: push_allowed
 AUDIT_STATUS: passed
 CHECKPOINT_ELIGIBILITY_STATUS: eligible
 CHECKPOINT_PREFLIGHT_STATUS: passed
-CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested yes --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
-CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_PROVIDER_MIGRATION_CHECKPOINT_001_1.md
-COMMIT_STATUS: committed
-LAST_COMMIT_HASH: dd8b446
+CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested yes --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001_1.md
+CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_MARKET_ANALYTICS_SKELETON_CHECKPOINT_001_1.md
+COMMIT_STATUS: pending
+LAST_COMMIT_HASH: d85bbf1
 LAST_COMMIT_BRANCH: main
 PUSH_STATUS: pushed
 LAST_PUSH_REMOTE: origin
 LAST_PUSH_BRANCH: main
 LAST_PUSH_TARGET_STATUS: pushed
-PROJECT_CHECKPOINT_STATUS: passed
+PROJECT_CHECKPOINT_STATUS: pending
 CHECKPOINT_BLOCKED_BY: NONE
 LAST_CHECKPOINT_FAILURE_REASON: NONE
 ```
@@ -58,7 +58,7 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 
 ```text
 ACTION_SEMANTIC: normal
-SEMANTIC_REASON: Ozon provider migration checkpoint committed and pushed; route to market analytics skeleton.
+SEMANTIC_REASON: Market analytics skeleton audit returned pass; route accepted bundle to aggregate checkpoint and push.
 ```
 
 ## Active branches
@@ -69,7 +69,7 @@ BLOCKER_TYPE: NONE
 STATUS: resolved
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: implement market analytics skeleton
+RESOLUTION_PATH: checkpoint accepted market analytics skeleton
 ```
 
 ## Completed milestones
@@ -99,9 +99,9 @@ NONE
 ## Last accepted result
 
 ```text
-ROLE: tester
-TASK: TASK_TEST_OZON_PROVIDER_MIGRATION_001
+ROLE: auditor
+TASK: TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001
 DATE: 2026-05-17
 STATUS: pass
-RESULT_REF: project-runtime/agent-results/TASK_TEST_OZON_PROVIDER_MIGRATION_001.md
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_MARKET_ANALYTICS_SKELETON_001.md
 ```

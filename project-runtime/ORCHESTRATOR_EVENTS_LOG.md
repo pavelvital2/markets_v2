@@ -53,6 +53,53 @@ NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 DATE: 2026-05-17
 EVENT_TYPE: audit_result_received
 ACTOR: auditor
+TASK_ID: TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+GATE_ID: GATE_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+ACTION_ID: NEXT_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+STATUS: pass
+SUMMARY: Ozon source contract research passed audit; route bundle to local checkpoint before designer continuation.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+- project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/agent-results/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+- project-docs/03_tasks/TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: pending_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: checkpoint_preflight
+ACTOR: orchestrator
+TASK_ID: TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001
+GATE_ID: GATE_OZON_RESEARCH_CHECKPOINT_001
+ACTION_ID: NEXT_OZON_RESEARCH_CHECKPOINT_COMMIT_001
+STATUS: passed
+SUMMARY: Aggregate Ozon research checkpoint preflight passed with include-untracked; push remains forbidden/not requested.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001.md
+- project-runtime/agent-results/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001_1.md
+- project-runtime/PROJECT_STATE.md
+- project-runtime/STATUS_SUMMARY.md
+COMMIT_HASH: pending_commit
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: aggregate_ozon_research_checkpoint
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: audit_result_received
+ACTOR: auditor
 TASK_ID: TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
 GATE_ID: GATE_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
 ACTION_ID: NEXT_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
@@ -137,6 +184,51 @@ COMMIT_HASH: NONE
 BRANCH: main
 PUSH_STATUS: not_required
 ACCEPTED_FILES: pending_route_commit
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_dispatch
+ACTOR: orchestrator
+TASK_ID: TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001
+GATE_ID: GATE_RESEARCH_OZON_SOURCE_CONTRACTS_001
+ACTION_ID: NEXT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+STATUS: dispatched
+SUMMARY: Ozon research task packet had REASONING_LEVEL VALUE: high, but requirements_analyst role default resolves to maximum; orchestrator dispatched agent 019e3673-2872-7b13-ba2a-8e9cb615e1c3 (Popper) with reasoning_effort xhigh.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-docs/07_reports/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001_RESULT.md
+- project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
+FAILURE_REASON: NONE
+NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
+```
+
+```text
+DATE: 2026-05-17
+EVENT_TYPE: profile_result_received
+ACTOR: requirements_analyst
+TASK_ID: TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001
+GATE_ID: GATE_RESEARCH_OZON_SOURCE_CONTRACTS_001
+ACTION_ID: NEXT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+STATUS: pass
+SUMMARY: Ozon source contract research completed from allowed sources; mandatory audit is required before designer continuation can use it.
+INPUT_REFS:
+- project-docs/03_tasks/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+OUTPUT_REFS:
+- project-docs/07_reports/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001_RESULT.md
+- project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+- project-docs/03_tasks/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+COMMIT_HASH: NONE
+BRANCH: main
+PUSH_STATUS: not_required
+ACCEPTED_FILES: NONE
 FAILURE_REASON: NONE
 NEXT_ACTION_REF: project-runtime/NEXT_ACTION.md
 ```

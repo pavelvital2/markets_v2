@@ -132,4 +132,18 @@ TASK_ID: TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001.md
 SUMMARY: Corrected WB research audit passed; source bounds, scope, secret exposure, and reasoning compliance checks passed.
+
+DATE: 2026-05-17
+ROLE: requirements_analyst
+TASK_ID: TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+SUMMARY: Ozon source contract research completed from allowed sources with xhigh reasoning evidence; mandatory audit pending.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
+SUMMARY: Ozon research audit passed; source bounds, scope, secret exposure, and reasoning compliance checks passed.
 ```

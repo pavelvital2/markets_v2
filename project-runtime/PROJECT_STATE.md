@@ -11,8 +11,8 @@ ACTIVE_DOC_ROOT: project-docs/
 PACKAGE_VERSION: 2.0.0
 GOVERNANCE_RULESET_VERSION: 2.0.0
 RUNTIME_SCHEMA_VERSION: 2.0.0
-CURRENT_PHASE: research
-PROJECT_STATUS: research_pending
+CURRENT_PHASE: checkpoint
+PROJECT_STATUS: checkpoint_pending
 ```
 
 ## Workspace identity
@@ -40,16 +40,16 @@ CHECKPOINT_ELIGIBILITY: local_only
 AUDIT_STATUS: passed
 CHECKPOINT_ELIGIBILITY_STATUS: eligible
 CHECKPOINT_PREFLIGHT_STATUS: passed
-CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested no --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001_1.md
-CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_WB_RESEARCH_CHECKPOINT_001_1.md
-COMMIT_STATUS: committed
+CHECKPOINT_PREFLIGHT_REF: agent-system/scripts/checkpoint_preflight.sh --task-packet project-docs/03_tasks/TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001.md --role orchestrator --include-untracked --push-requested no --write-receipt --receipt project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001_1.md
+CHECKPOINT_RECEIPT_REF: project-runtime/checkpoints/CHECKPOINT_ELIGIBILITY_TASK_AGGREGATE_OZON_RESEARCH_CHECKPOINT_001_1.md
+COMMIT_STATUS: pending
 LAST_COMMIT_HASH: a58f66f
 LAST_COMMIT_BRANCH: main
 PUSH_STATUS: not_required
 LAST_PUSH_REMOTE: NONE
 LAST_PUSH_BRANCH: NONE
 LAST_PUSH_TARGET_STATUS: not_required
-PROJECT_CHECKPOINT_STATUS: passed
+PROJECT_CHECKPOINT_STATUS: pending_commit
 CHECKPOINT_BLOCKED_BY: NONE
 LAST_CHECKPOINT_FAILURE_REASON: NONE
 ```
@@ -58,7 +58,7 @@ LAST_CHECKPOINT_FAILURE_REASON: NONE
 
 ```text
 ACTION_SEMANTIC: normal
-SEMANTIC_REASON: WB research checkpoint completed; route Ozon source contract research.
+SEMANTIC_REASON: Ozon source contract research audit passed; route accepted Ozon research bundle to local checkpoint.
 ```
 
 ## Active branches
@@ -69,7 +69,7 @@ BLOCKER_TYPE: NONE
 STATUS: resolved
 BLOCKS: NONE
 BLOCKED_BY: NONE
-RESOLUTION_PATH: dispatch TASK_RESEARCH_OZON_SOURCE_CONTRACTS_001 with xhigh, then audit research result
+RESOLUTION_PATH: checkpoint accepted Ozon research before designer continuation
 ```
 
 ## Completed milestones
@@ -99,9 +99,9 @@ NONE
 ## Last accepted result
 
 ```text
-ROLE: requirements_analyst
-TASK: TASK_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
+ROLE: auditor
+TASK: TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001
 DATE: 2026-05-17
 STATUS: pass
-RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001.md
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_RESEARCH_OZON_SOURCE_CONTRACTS_001.md
 ```

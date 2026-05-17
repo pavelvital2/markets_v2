@@ -1,0 +1,124 @@
+# PACKAGE_VERSIONING
+
+## Purpose
+
+This document defines minimal package versioning policy for the universal orchestration package. It is not a release manifest and does not list every artifact.
+
+## Runtime version fields
+
+Mandatory runtime version fields:
+
+```text
+PACKAGE_VERSION:
+GOVERNANCE_RULESET_VERSION:
+RUNTIME_SCHEMA_VERSION:
+```
+
+`PROJECT_STATE.md` must contain these fields and reference the active values unless a governed migration task explicitly changes them.
+
+## Active version constants
+
+```text
+CURRENT_PACKAGE_VERSION: 2.0.0
+CURRENT_GOVERNANCE_RULESET_VERSION: 2.0.0
+CURRENT_RUNTIME_SCHEMA_VERSION: 2.0.0
+```
+
+These constants define the active package/governance/schema tuple for runtime validation. They are policy constants, not a release manifest.
+
+## Correction semantics
+
+Owner-authorized corrections may reconcile internally inconsistent artifacts
+inside an accepted package version when the intended public package capability
+is already installed. Such corrections are recorded in `GOVERNANCE_CHANGELOG.md`
+and must state whether the active tuple changed.
+
+The v1.2.0 correction chain keeps the active tuple unchanged:
+
+```text
+CURRENT_PACKAGE_VERSION: 1.2.0
+CURRENT_GOVERNANCE_RULESET_VERSION: 1.2.0
+CURRENT_RUNTIME_SCHEMA_VERSION: 1.1.0
+```
+
+Runtime file set synchronization, role/task enum synchronization, RESULT field
+normalization, documentation stage reconciliation, and final smoke/cross-link
+hardening in that chain are treated as v1.2.0 correction metadata, not as a new
+package installation.
+
+These correction entries do not reserve or pre-install any future minor package
+version. A later package installation must use its own owner-authorized bounded
+package update, active tuple change, migration note, and changelog entry.
+
+The v1.3.0 feature upgrade installs:
+
+```text
+CURRENT_PACKAGE_VERSION: 1.3.0
+CURRENT_GOVERNANCE_RULESET_VERSION: 1.3.0
+CURRENT_RUNTIME_SCHEMA_VERSION: 1.2.0
+```
+
+This upgrade adds Research Dependency Loop, Design Research Loop, Requester
+Return Protocol, explicit reasoning-level governance, requester return metadata
+fields, and runtime tuple cleanup for `CURRENT_GATE.ACTION_SEMANTIC` and
+`NEXT_ACTION.ACTION_SEMANTIC`. It must not use `1.2.1` as the active tuple.
+
+The v2.0.0 governance hardening package installs:
+
+```text
+CURRENT_PACKAGE_VERSION: 2.0.0
+CURRENT_GOVERNANCE_RULESET_VERSION: 2.0.0
+CURRENT_RUNTIME_SCHEMA_VERSION: 2.0.0
+```
+
+This major update makes workspace identity validation and repository lock
+validation mandatory before profile-agent dispatch, runtime initialization,
+checkpoint, commit, or push. Existing runtime states that lack the mandatory
+workspace identity, repository lock, or checkpoint eligibility fields enter
+correction or owner wait flow; the orchestrator must not silently infer those
+fields from folder name, inherited `.git` metadata, or raw remote strings.
+
+The governance smoke-test addition for
+`TASK_ASO_PATCH_008_GOVERNANCE_SMOKE_TESTS` keeps the active tuple unchanged at
+`2.0.0 / 2.0.0 / 2.0.0`. It adds deterministic local fixtures and a dry-run
+runner for the v2.0.0 blocker surface; it is recorded in
+`GOVERNANCE_CHANGELOG.md` and does not install a new package version.
+
+## Version semantics
+
+```text
+PATCH  = wording, formatting, or non-semantic clarification
+MINOR  = compatible hardening; new validation or fields that do not change accepted state meaning
+MAJOR  = changes to mandatory transitions, role authority, filesystem authority, terminal semantics, required runtime files, or status meanings
+```
+
+## Package update rules
+
+1. Universal package changes occur only through owner-authorized bounded package update task.
+2. Normal project agents cannot change `agent-system/`.
+3. Package update activates governance freeze for normal project dispatch.
+4. Runtime schema, templates, runtime loop, and governance docs in the compatibility set must be compatible before freeze exits.
+5. Package change must be recorded in `GOVERNANCE_CHANGELOG.md`.
+6. Existing project runtime state that lacks newly mandatory fields enters correction/wait flow, not silent inference.
+
+## Compatibility rule
+
+A package version is valid only when the compatibility set is mutually compatible for the active package version, governance ruleset version, and runtime schema version.
+
+The compatibility set includes at minimum:
+
+```text
+RUNTIME_STATE_SCHEMA.md
+PROJECT_STATE_TEMPLATE.md
+CURRENT_GATE_TEMPLATE.md
+NEXT_ACTION_TEMPLATE.md
+GAP_REGISTER_TEMPLATE.md
+AGENT_RESULTS_LOG_TEMPLATE.md
+ORCHESTRATOR_RUNTIME_LOOP.md
+ALLOWED_ORCHESTRATOR_ACTIONS.md
+FILESYSTEM_GOVERNANCE.md
+GOVERNANCE_AUTHORITY.md
+STATE_TRANSITION_RULES.md
+VIOLATION_RECOVERY.md
+ACCEPTED_STATE_LOCKING.md
+```

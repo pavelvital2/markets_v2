@@ -104,4 +104,32 @@ TASK_ID: TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001
 STATUS: pass
 RESULT_REF: project-runtime/agent-results/TASK_AUDIT_DESIGN_CONTINUATION_AFTER_SOURCE_DISCOVERY_001.md
 SUMMARY: Canonical design continuation audit passed; bounded docs and downstream task/proposal artifacts validate.
+
+DATE: 2026-05-17
+ROLE: requirements_analyst
+TASK_ID: TASK_RESEARCH_WB_SOURCE_CONTRACTS_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+SUMMARY: WB source contract research completed from allowed sources; mandatory audit pending.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_RESEARCH_WB_SOURCE_CONTRACTS_001
+STATUS: blocked
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+SUMMARY: WB research content passed checks, but audit blocked because original dispatch did not meet requirements_analyst maximum reasoning default.
+
+DATE: 2026-05-17
+ROLE: requirements_analyst
+TASK_ID: TASK_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_RESEARCH_WB_SOURCE_CONTRACTS_001.md
+SUMMARY: Corrected WB source contract research under xhigh reasoning evidence; mandatory correction audit pending.
+
+DATE: 2026-05-17
+ROLE: auditor
+TASK_ID: TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001
+STATUS: pass
+RESULT_REF: project-runtime/agent-results/TASK_AUDIT_CORRECT_RESEARCH_WB_SOURCE_CONTRACTS_REASONING_001.md
+SUMMARY: Corrected WB research audit passed; source bounds, scope, secret exposure, and reasoning compliance checks passed.
 ```
